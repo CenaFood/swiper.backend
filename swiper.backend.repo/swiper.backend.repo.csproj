@@ -6,4 +6,8 @@
     <RootNamespace>ch.cena.swiper.backend.repo</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\swiper.backend.db\swiper.backend.data.csproj" />
+  </ItemGroup>
+
 </Project>

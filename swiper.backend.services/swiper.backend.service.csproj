@@ -11,4 +11,8 @@
     <Folder Include="Entities\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\swiper.backend.db\swiper.backend.data.csproj" />
+  </ItemGroup>
+
 </Project>

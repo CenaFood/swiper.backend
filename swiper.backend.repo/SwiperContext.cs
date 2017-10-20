@@ -19,6 +19,7 @@ namespace ch.cena.swiper.backend.data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Annotation>().ToTable("Annotations");
             modelBuilder.Entity<Answer>().ToTable("Answers");
             modelBuilder.Entity<Challenge>().ToTable("Challenges");

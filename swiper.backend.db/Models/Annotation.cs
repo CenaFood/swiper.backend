@@ -4,9 +4,8 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.data.Models
 {
-    class Annotation
+    public class Annotation: BaseEntity
     {
-        public Guid ID { get; set; }
         public Guid AnswerID { get; set; }
         public Guid ChallengeID { get; set; }
         public Guid UserID { get; set; }

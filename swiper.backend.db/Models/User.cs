@@ -4,9 +4,8 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.data.Models
 {
-    class User
+    public class User : BaseEntity
     {
-        public Guid ID { get; set; };
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MailAddress { get; set; }

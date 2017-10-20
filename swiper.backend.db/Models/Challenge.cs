@@ -4,9 +4,8 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.data.Models
 {
-    class Challenge
+    public class Challenge : BaseEntity
     {
-        public Guid ID { get; set; }
         public Guid ChallengeTypeID { get; set; }
         public Guid ProjectID { get; set; }
         public Object Payload { get; set; }

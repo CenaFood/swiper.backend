@@ -4,9 +4,8 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.data.Models
 {
-    class Project
+    public class Project : BaseEntity
     {
-        public Guid ID { get; set; }
         public string ProjectDescription { get; set; }
         public DateTime IssueDate { get; set; }
         public DateTime? ExpiryDate { get; set; }

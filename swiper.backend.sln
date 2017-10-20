@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "swiper.backend.api", "swipe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "swiper.backend.service", "swiper.backend.services\swiper.backend.service.csproj", "{7AADE6A9-6F7B-48D1-924D-A4F443C95F2C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "swiper.backend.db", "swiper.backend.db\swiper.backend.db.csproj", "{7AFC27B6-D3D2-4240-A303-F25767AA2645}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "swiper.backend.data", "swiper.backend.db\swiper.backend.data.csproj", "{7AFC27B6-D3D2-4240-A303-F25767AA2645}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "swiper.backend.repo", "swiper.backend.repo\swiper.backend.repo.csproj", "{D8433A49-1A08-43BC-9250-5D5C96FCDFB6}"
 EndProject
