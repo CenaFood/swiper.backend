@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>ch.cena.swiper.backend.repo</AssemblyName>
+    <RootNamespace>ch.cena.swiper.backend.repo</RootNamespace>
+  </PropertyGroup>
+
+</Project>

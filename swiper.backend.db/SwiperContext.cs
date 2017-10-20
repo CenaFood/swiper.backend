@@ -1,10 +1,10 @@
-﻿using ch.cena.swiper.backend.db.Models;
+﻿using ch.cena.swiper.backend.data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ch.cena.swiper.backend.db
+namespace ch.cena.swiper.backend.data
 {
     class SwiperContext: DbContext
     {

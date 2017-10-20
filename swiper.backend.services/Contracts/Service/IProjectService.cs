@@ -6,6 +6,5 @@ namespace ch.cena.swiper.backend.services.Contracts
 {
     interface IProjectService
     {
-        public void 
     }
 }

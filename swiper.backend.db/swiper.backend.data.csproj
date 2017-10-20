@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <RootNamespace>ch.cena.swiper.backend.db</RootNamespace>
-    <AssemblyName>ch.cena.swiper.backend.db</AssemblyName>
+    <RootNamespace>ch.cena.swiper.backend.data</RootNamespace>
+    <AssemblyName>ch.cena.swiper.backend.data</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

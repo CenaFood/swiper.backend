@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ch.cena.swiper.backend.db.Models
+namespace ch.cena.swiper.backend.data.Models
 {
     class ChallengeType
     {
