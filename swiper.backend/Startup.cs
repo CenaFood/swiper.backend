@@ -23,6 +23,9 @@ namespace swiper.backend
         {
             services.AddMvc();
             services.AddDbContext<SwiperContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DebugConnection")));
+            services.AddTransient<IAnnotationService, AnnotationService>();
+            services.AddTransient<IChallengeService, ChallengeService>();
+            services.AddTransient<IProjectService, ProjectService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
