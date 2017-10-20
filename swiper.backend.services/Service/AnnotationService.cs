@@ -3,40 +3,36 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using ch.cena.swiper.backend.data.Models;
-using ch.cena.swiper.backend.repo.Contracts;
+using System.Linq;
+using ch.cena.swiper.backend.data;
 
 namespace ch.cena.swiper.backend.service.Service
 {
     public class AnnotationService : IAnnotationService
     {
 
-        private IRepository<Annotation> annotationRepository;
-        private IRepository<Project> projectRepository;
-        private IRepository<User> userRepository;
-
-        public AnnotationService(IRepository<Annotation> annotationRepository,
-                                 IRepository<User> userRepository,
-                                 IRepository<Project> projectRepository)
+        private readonly SwiperContext context;
+        public AnnotationService(SwiperContext swiperContext)
         {
-            this.annotationRepository = annotationRepository;
-            this.userRepository = userRepository;
-            this.projectRepository = projectRepository;
+            context = swiperContext;
         }
 
 
         public Annotation GetAnnotation(Guid id)
         {
-            return annotationRepository.Get(id);
+            return context.Annotations.Find(id);
         }
 
         public IEnumerable<Annotation> GetAnnotations(Project project)
         {
-            throw new NotImplementedException();
+            return context.Annotations
+                .Where(a => a.Challenge.ProjectID.Equals(project.ID));
         }
 
         public void InsertAnnotation(Annotation annotation)
         {
-            annotationRepository.Insert(annotation);
+            context.Annotations.Add(annotation);
+            context.SaveChangesAsync();
         }
     }
 }

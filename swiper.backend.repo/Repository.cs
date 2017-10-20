@@ -3,9 +3,7 @@ using ch.cena.swiper.backend.data;
 using ch.cena.swiper.backend.repo.Contracts;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using ch.cena.swiper.backend.data.Models;
 
 namespace ch.cena.swiper.backend.repo
