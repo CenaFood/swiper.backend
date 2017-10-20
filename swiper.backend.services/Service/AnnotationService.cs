@@ -7,7 +7,7 @@ using ch.cena.swiper.backend.repo.Contracts;
 
 namespace ch.cena.swiper.backend.service.Service
 {
-    class AnnotationService : IAnnotationService
+    public class AnnotationService : IAnnotationService
     {
 
         private IRepository<Annotation> annotationRepository;

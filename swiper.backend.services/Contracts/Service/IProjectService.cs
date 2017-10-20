@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.services.Contracts
 {
-    interface IProjectService
+    public interface IProjectService
     {
         IEnumerable<Project> GetProjects();
         IEnumerable<Project> GetMyProjects();

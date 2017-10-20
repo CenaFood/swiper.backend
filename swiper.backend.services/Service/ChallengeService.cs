@@ -6,7 +6,7 @@ using ch.cena.swiper.backend.data.Models;
 
 namespace ch.cena.swiper.backend.service.Service
 {
-    class ChallengeService : IChallengeService
+    public class ChallengeService : IChallengeService
     {
         public IEnumerable<Challenge> GetChallenges()
         {

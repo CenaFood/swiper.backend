@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.services.Contracts
 {
-    interface IChallengeService
+    public interface IChallengeService
     {
         IEnumerable<Challenge> GetChallenges();
         IEnumerable<Challenge> GetChallengesFor(Project project);

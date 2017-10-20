@@ -5,7 +5,7 @@ using ch.cena.swiper.backend.data.Models;
 
 namespace ch.cena.swiper.backend.services.Contracts
 {
-    interface IAnnotationService
+    public interface IAnnotationService
     {
         IEnumerable<Annotation> GetAnnotations(Project project);
         Annotation GetAnnotation(Guid id);

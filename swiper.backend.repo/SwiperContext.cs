@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.data
 {
-    class SwiperContext: DbContext
+    public class SwiperContext: DbContext
     {
         public SwiperContext(DbContextOptions<SwiperContext> options) : base(options) { }
 
