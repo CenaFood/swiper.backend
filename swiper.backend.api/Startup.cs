@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using ch.cena.swiper.backend.data;
 using ch.cena.swiper.backend.services.Contracts;
 
-namespace swiper.backend
+namespace ch.cena.swiper.backend.api
 {
     public class Startup
     {

@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\swiper.backend.db\swiper.backend.data.csproj" />
+    <ProjectReference Include="..\swiper.backend.data\ch.cena.swiper.backend.data.csproj" />
   </ItemGroup>
 
 </Project>
