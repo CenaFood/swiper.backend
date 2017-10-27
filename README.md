@@ -12,11 +12,17 @@ Migrations for code first DB creation is inside ./Migrations
 
 ### useful commands:
 create a migration inside date with config from api startum
-´´dotnet ef migrations add -s ../swiper.backend.api/ <NAME_OF_MIGRATION>´´
+```
+dotnet ef migrations add -s ../swiper.backend.api/ <NAME_OF_MIGRATION>
+```
 update database with current migrations
-''dotnet ef database update -s ../swiper.backend.api/ ''
+```
+dotnet ef database update -s ../swiper.backend.api/ 
+```
 or
-''dotnet ef database update -s ../swiper.backend.api/ <NAME_OF_MAX_MIGRATION>''
+```
+dotnet ef database update -s ../swiper.backend.api/ <NAME_OF_MAX_MIGRATION>
+```
 
 ##ch.cena.swiper.backend.service
 This project holds services to handle API reqests in a seperate Layer. Validation sould be done here.
