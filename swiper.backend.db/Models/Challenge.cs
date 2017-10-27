@@ -8,7 +8,7 @@ namespace ch.cena.swiper.backend.data.Models
     {
         public Guid ChallengeTypeID { get; set; }
         public Guid ProjectID { get; set; }
-        public Object Payload { get; set; }
+        public string Payload { get; set; }
 
         public ChallengeType ChallengeType { get; set; }
         public Project Project { get; set; }
