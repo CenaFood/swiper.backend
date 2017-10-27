@@ -23,6 +23,10 @@ or
 ```
 dotnet ef database update -s ../swiper.backend.api/ <NAME_OF_MAX_MIGRATION>
 ```
+Run **Docker MSSQL** instance on Linux basis to be used in DevEnv 
+```
+docker run --name cenaDevSQL -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=yourStrong(!)Password' -p 1433:1433 -d microsoft/mssql-server-linux
+```
 
 ## ch.cena.swiper.backend.service
 This project holds services to handle API reqests in a seperate Layer. Validation sould be done here.
