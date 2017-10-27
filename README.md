@@ -1,12 +1,12 @@
 # swiper.backend
 Holds the backend for the swiper.android and swiper.ios applications. The API can be accessed as REST structure
 
-##ch.cena.swiper.backend.api
+## ch.cena.swiper.backend.api
 API entry point and Configuration setup.
 Handling of validation Errors and correct response to the requesting User
 Authentication and Authorization is done inside this project. (Future Reqirement)
 
-##ch.cena.swiper.backend.data
+## ch.cena.swiper.backend.data
 This project holds Entity Framework Models and the DBContext. 
 Migrations for code first DB creation is inside ./Migrations
 
@@ -24,5 +24,5 @@ or
 dotnet ef database update -s ../swiper.backend.api/ <NAME_OF_MAX_MIGRATION>
 ```
 
-##ch.cena.swiper.backend.service
+## ch.cena.swiper.backend.service
 This project holds services to handle API reqests in a seperate Layer. Validation sould be done here.
