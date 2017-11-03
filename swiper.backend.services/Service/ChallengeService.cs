@@ -4,11 +4,20 @@ using System.Collections.Generic;
 using System.Text;
 using ch.cena.swiper.backend.data.Models;
 using ch.cena.swiper.backend.service.Contracts.Entities;
+using ch.cena.swiper.backend.data;
+using System.Linq;
 
 namespace ch.cena.swiper.backend.service.Service
 {
     public class ChallengeService : IChallengeService
     {
+
+        private readonly SwiperContext context;
+        public ChallengeService(SwiperContext swiperContext)
+        {
+            context = swiperContext;
+        }
+
         public IEnumerable<IChallenge> GetChallenges(IUser user)
         {
             throw new NotImplementedException();

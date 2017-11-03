@@ -18,9 +18,17 @@ namespace ch.cena.swiper.backend.service.Service
             context = swiperContext;
         }
 
-        public void InsertAnnotation(IAnnotation annotation)
+        public void InsertAnnotation(IUser user, IAnnotation annotation)
         {
-            throw new NotImplementedException();
+            Annotation newItem = new Annotation()
+            {
+                ChallengeID = annotation.ChallengeID,
+                Answer = annotation.Answer,
+                UserID = user.ID
+
+            };
+            context.Annotations.Add(newItem);
+            context.SaveChanges();
         }
     }
 }

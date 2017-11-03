@@ -9,8 +9,8 @@ namespace ch.cena.swiper.backend.services.Contracts
     public interface IProjectService
     {
         IEnumerable<IProject> GetProjects();
-        IEnumerable<IProject> GetMyProjects();
-        void InsertProject(IProject project);
-        void CloseProject(IProject project);
+        IEnumerable<IProject> GetMyProjects(IUser user);
+        void InsertProject(IUser user, IProject project);
+        void CloseProject(IUser user, IProject project);
     }
 }
