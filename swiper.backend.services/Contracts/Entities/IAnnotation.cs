@@ -4,10 +4,10 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.service.Contracts.Entities
 {
-    interface IAnnotation
+    public interface IAnnotation
     {
-        Guid ChallengeID { get; set; }
-        Guid UserID { get; set; }
-        string Answer { get; set; }
+        Guid ChallengeID { get; }
+        Guid UserID { get; }
+        string Answer { get; }
     }
 }

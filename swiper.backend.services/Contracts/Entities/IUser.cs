@@ -4,8 +4,9 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.service.Contracts.Entities
 {
-    interface IUser
+    public interface IUser
     {
-        
+        Guid ID { get; }
+        string Name { get; }
     }
 }
