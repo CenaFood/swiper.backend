@@ -11,9 +11,10 @@ using System;
 namespace ch.cena.swiper.backend.data.Migrations
 {
     [DbContext(typeof(SwiperContext))]
-    partial class SwiperContextModelSnapshot : ModelSnapshot
+    [Migration("20171103102941_RenamingPayload")]
+    partial class RenamingPayload
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
