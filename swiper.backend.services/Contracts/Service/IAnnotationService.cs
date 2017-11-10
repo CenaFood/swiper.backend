@@ -8,6 +8,6 @@ namespace ch.cena.swiper.backend.services.Contracts
 {
     public interface IAnnotationService
     {
-        void InsertAnnotation(IUser user, IAnnotation annotation);
+        void InsertAnnotation(IAnnotation annotation);
     }
 }

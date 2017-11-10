@@ -6,6 +6,7 @@ using ch.cena.swiper.backend.data.Models;
 using ch.cena.swiper.backend.service.Contracts.Entities;
 using ch.cena.swiper.backend.data;
 using System.Linq;
+using ch.cena.swiper.backend.service.DTOs;
 
 namespace ch.cena.swiper.backend.service.Service
 {
@@ -20,17 +21,31 @@ namespace ch.cena.swiper.backend.service.Service
 
         public IEnumerable<IChallenge> GetChallenges(IUser user)
         {
-            throw new NotImplementedException();
+            return context.Challenges.Where(c => !c.Annotations.Any(a => a.UserID == user.ID))
+                              .OrderByRandom()
+                              .Take(20)
+                              .ToList()
+                              .Cast<ChallengeDTO>();
         }
 
         public IEnumerable<IChallenge> GetChallengesFor(IUser user, Guid projectID)
         {
-            throw new NotImplementedException();
+            return context.Challenges.Where(c => !c.Annotations.Any(a => a.UserID == user.ID))
+                            .Where(c => c.ProjectID == projectID)
+                            .OrderByRandom()
+                            .Take(20)
+                            .ToList()
+                            .Cast<ChallengeDTO>();
         }
 
         public IEnumerable<IChallenge> GetChallengesOf(IUser user, string type)
         {
-            throw new NotImplementedException();
+            return context.Challenges.Where(c => !c.Annotations.Any(a => a.UserID == user.ID))
+                              .Where(c => c.ChallengeType.Description == type)
+                              .OrderByRandom()
+                              .Take(20)
+                              .ToList()
+                              .Cast<ChallengeDTO>();
         }
     }
 }
