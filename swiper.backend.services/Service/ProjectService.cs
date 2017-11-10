@@ -19,7 +19,7 @@ namespace ch.cena.swiper.backend.service.Service
 
         public void CloseProject(IUser user, IProject project)
         {
-
+            throw new NotImplementedException();
         }
 
         public IEnumerable<IProject> GetMyProjects(IUser user)

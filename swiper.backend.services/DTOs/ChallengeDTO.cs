@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.service.DTOs
 {
-    class ChallengeDTO : Challenge, IChallenge
+    public class ChallengeDTO : Challenge, IChallenge
     {
         public string Type => this.ChallengeType.Name;
 

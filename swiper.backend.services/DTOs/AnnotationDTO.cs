@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.service.DTOs
 {
-    class AnnotationDTO :  Annotation, IAnnotation
+    public class AnnotationDTO :  Annotation, IAnnotation
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.service.DTOs
 {
-    class ProjectDTO : Project, IProject
+    public class ProjectDTO : Project, IProject
     {
         public ProjectDTO(Project project)
         {

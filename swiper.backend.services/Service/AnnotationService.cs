@@ -18,6 +18,10 @@ namespace ch.cena.swiper.backend.service.Service
             context = swiperContext;
         }
 
+        /// <summary>
+        /// Inserts an IAnnotation into the Database.
+        /// </summary>
+        /// <param name="annotation"></param>
         public void InsertAnnotation(IAnnotation annotation)
         {
             Annotation newItem = new Annotation()
