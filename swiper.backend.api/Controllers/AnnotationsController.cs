@@ -27,7 +27,7 @@ namespace ch.cena.swiper.backend.api.Controllers
 
             _service.InsertAnnotation(annotation);
 
-            return Ok(annotation);
+            return Ok();
         }
     }
 }
