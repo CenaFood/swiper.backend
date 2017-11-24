@@ -6,7 +6,8 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.service.DTOs
 {
-    public class AnnotationDTO :  Annotation, IAnnotation
+    public class AnnotationDTO : Annotation, IAnnotation
     {
+        public ILocation Location => new LocationDTO(Latitude, Longitude);
     }
 }

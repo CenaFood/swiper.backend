@@ -15,5 +15,11 @@ namespace ch.cena.swiper.backend.service.Contracts.Entities
 
         [Required]
         string Answer { get; }
+
+        [Required]
+        ILocation Location { get; }
+
+        [Required]
+        DateTime LocalTime { get; }
     }
 }
