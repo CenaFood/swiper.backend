@@ -24,7 +24,7 @@ namespace ch.cena.swiper.backend.api.Controllers
         {
             var result = _service.GetChallenges(UserDTO.GetDummy());
 
-            if (result == null) return NotFound("No more challanges for you");
+            if (result == null || result.Count() < 1) return NotFound("No more challanges for you");
             return Json(result);
         }
 

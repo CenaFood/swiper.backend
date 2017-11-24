@@ -9,9 +9,10 @@ namespace ch.cena.swiper.backend.data.Models
         public Guid ChallengeID { get; set; }
         public Guid UserID { get; set; }
         public string Answer { get; set; }
-        public float Latitude { get; }
-        public float Longitude { get; }
+        public float Latitude { get; set; }
+        public float Longitude { get; set; }
         public DateTime LocalTime { get; set; }
+
         public Challenge Challenge {get; set;}
         public User User { get; set; }
     }
