@@ -16,7 +16,5 @@ namespace ch.cena.swiper.backend.service.DTOs
         public IImage Image => throw new NotImplementedException();
 
         public IEnumerable<string> Answers => this.ChallengeType.Answers.Select(a => a.Descripton);
-
-        IProject IChallenge.Project => new ProjectDTO(this.Project);
     }
 }
