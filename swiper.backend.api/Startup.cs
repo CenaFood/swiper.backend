@@ -6,6 +6,8 @@ using ch.cena.swiper.backend.service.Service;
 using Microsoft.EntityFrameworkCore;
 using ch.cena.swiper.backend.data;
 using ch.cena.swiper.backend.services.Contracts;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace ch.cena.swiper.backend.api
 {
@@ -36,6 +38,12 @@ namespace ch.cena.swiper.backend.api
                 app.UseDeveloperExceptionPage();
             }
             app.UseMvc();
+            //app.UseStaticFiles(new StaticFileOptions()
+            //{
+            //    FileProvider = new PhysicalFileProvider(
+            //    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot", "images")),
+            //    RequestPath = new PathString("/images")
+            //});
         }
     }
 }
