@@ -35,7 +35,6 @@ namespace ch.cena.swiper.backend.api
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseMvc();
         }
     }

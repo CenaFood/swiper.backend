@@ -4,13 +4,13 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.service.Contracts.Entities
 {
-    interface IImage
+    public interface IImage
     {
-        string ID { get; set; }
-        string FileName { get; set; }
-        string Extension { get; set; }
-        int Height { get; set; }
-        int Width { get; set; }
-        string Url { get; set; }
+        string ID { get; }
+        string FileName { get; }
+        string Extension { get; }
+        int Height { get; }
+        int Width { get; }
+        string Url { get; }
     }
 }

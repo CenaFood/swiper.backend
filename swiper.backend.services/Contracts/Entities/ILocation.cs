@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace ch.cena.swiper.backend.service.Contracts.Entities
 {
-    public interface IUser
+    public interface ILocation
     {
         [Required]
-        Guid ID { get; }
-        string Name { get; }
+        float Latitude { get; }
+        [Required]
+        float Longitude { get; }
     }
 }
