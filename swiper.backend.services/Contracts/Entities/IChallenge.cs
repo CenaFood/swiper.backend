@@ -9,7 +9,6 @@ namespace ch.cena.swiper.backend.service.Contracts.Entities
         Guid ID { get; }
         string Type { get; }
         string Description { get; }
-        IProject Project { get; }
         IImage Image { get; }
         IEnumerable<string> Answers { get; }
 
