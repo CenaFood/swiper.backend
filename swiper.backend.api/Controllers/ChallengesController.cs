@@ -9,6 +9,7 @@ using ch.cena.swiper.backend.service.DTOs;
 
 namespace ch.cena.swiper.backend.api.Controllers
 {
+    [Route("api/[controller]")]
     public class ChallengesController : Controller
     {
         ChallengeService _service;
@@ -19,7 +20,7 @@ namespace ch.cena.swiper.backend.api.Controllers
             _service = challengeService;
         }
 
-        [HttpGet("[controller]")]
+        [HttpGet("api/challenges")]
         public IActionResult GetChallenges()
         {
             var result = _service.GetChallenges(UserDTO.GetDummy());

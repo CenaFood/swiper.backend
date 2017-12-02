@@ -36,5 +36,25 @@ namespace ch.cena.swiper.backend.service.Service
         {
             throw new NotImplementedException();
         }
+
+        public Project GetProjectByName(string name)
+        {
+            return context.Projects.FirstOrDefault(i => i.ExpiryDate > DateTime.Now && i.Description.ToLower() == name.ToLower().Trim());
+        }
+
+        public Project CreateProject(string name)
+        {
+            var project = new Project()
+            {
+                Description = name,
+                ExpiryDate = DateTime.Now.AddYears(2),
+                IssueDate = DateTime.Now
+            };
+
+            context.Projects.Add(project);
+            context.SaveChanges();
+
+            return project;
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace ch.cena.swiper.backend.service.Service
 
         public IEnumerable<IChallenge> GetChallenges(IUser user)
         {
+            // TODO: Check performance
             return context.Challenges.Where(c => !c.Annotations.Any(a => a.UserID == user.ID))
                               .OrderByRandom()
                               .Take(20)
@@ -46,6 +47,23 @@ namespace ch.cena.swiper.backend.service.Service
                               .Take(20)
                               .ToList()
                               .Cast<ChallengeDTO>();
+        }
+        public ChallengeType GetChallengeTypeByName(string name)
+        {
+            return context.ChallengeTypes.FirstOrDefault(i => i.Name.ToLower() == name.ToLower().Trim());
+        }
+        public ChallengeType CreateChallengeType(string name, List<string> answers)
+        {
+            var challengeType = new ChallengeType()
+            {
+                Answers = answers.Select(i => new Answer() { Descripton = i}).ToList(),
+                Name = name
+            };
+
+            context.ChallengeTypes.Add(challengeType);
+            context.SaveChanges();
+
+            return challengeType;
         }
     }
 }
