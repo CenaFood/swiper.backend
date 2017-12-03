@@ -19,7 +19,7 @@ namespace ch.cena.swiper.backend.service.DTOs
                 FirstName = "John",
                 LastName = "Doe",
                 MailAddress = "john.doe@dum.my",
-                ID = Guid.Parse("{ 6A1BA20A - 8D25 - 4E71 - 8BD8 - E6872FD53ADA }")
+                ID = Guid.Parse("6A1BA20A-8D25-4E71-8BD8-E6872FD53ADA")
             };
         }
     }    
