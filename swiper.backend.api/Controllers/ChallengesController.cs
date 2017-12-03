@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ch.cena.swiper.backend.service.DTOs;
+using ch.cena.swiper.backend.services.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using ch.cena.swiper.backend.service.Service;
-using ch.cena.swiper.backend.service.Contracts.Entities;
-using ch.cena.swiper.backend.service.DTOs;
+using System;
+using System.Linq;
 
 namespace ch.cena.swiper.backend.api.Controllers
 {
-    [Route("api/[controller]")]
-    public class ChallengesController : Controller
+    public  class ChallengesController : Controller
     {
-        ChallengeService _service;
+        private readonly IChallengeService _service;
 
-
-        public ChallengesController(ChallengeService challengeService)
+        public ChallengesController(IChallengeService challengeService)
         {
             _service = challengeService;
         }

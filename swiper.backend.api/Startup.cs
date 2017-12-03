@@ -25,9 +25,11 @@ namespace ch.cena.swiper.backend.api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<SwiperContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DebugConnection")));
+
             services.AddMvc();
             services.AddOptions();
-            services.AddDbContext<SwiperContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DebugConnection")));
+
             services.AddTransient<IAnnotationService, AnnotationService>();
             services.AddTransient<IChallengeService, ChallengeService>();
             services.AddTransient<IProjectService, ProjectService>();

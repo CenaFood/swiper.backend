@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using ch.cena.swiper.backend.service.Service;
+﻿using Microsoft.AspNetCore.Mvc;
 using ch.cena.swiper.backend.service.DTOs;
+using ch.cena.swiper.backend.services.Contracts;
 
 namespace ch.cena.swiper.backend.api.Controllers
 {
     [Route("[controller]")]
     public class AnnotationsController : Controller
     {
-        AnnotationService _service;
+        IAnnotationService _service;
         
-        public AnnotationsController(AnnotationService annotationService)
+        public AnnotationsController(IAnnotationService annotationService)
         {
             _service = annotationService;
         }
