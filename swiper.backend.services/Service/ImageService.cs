@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.IO;
 
 namespace ch.cena.swiper.backend.service.Service
 {
@@ -24,9 +25,14 @@ namespace ch.cena.swiper.backend.service.Service
         public ImageDTO GetImageByFilename(string filename)
         {
             if (String.IsNullOrEmpty(filename)) return null;
+            // TODO Get actual configuration and dimetions.
             return new ImageDTO()
             {
-                // TODO: Fill image DTO correctly
+                FileName = filename,
+                FileExtension = Path.GetExtension(filename),
+                Height = 512,
+                Width = 512,
+                Url = "http://192.168.100310/images/" + filename
             };            
         }
 

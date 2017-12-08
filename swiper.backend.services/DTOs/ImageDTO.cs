@@ -7,7 +7,6 @@ namespace ch.cena.swiper.backend.service.DTOs
 {
     public class ImageDTO: IImage
     {
-        public string ID { get; set; }
         public string FileName { get; set; }
         public string FileExtension { get; set; }
         public int Height { get; set; }

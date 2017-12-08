@@ -22,7 +22,6 @@ namespace ch.cena.swiper.backend.api.Controllers
         public IActionResult Get(int id)
         {
             var resutl = new ImageDTO();
-            resutl.ID = Guid.NewGuid().ToString();
             resutl.Height = 400;
             resutl.Width = 400;
             resutl.FileName = "23825329_702402206622090_500261469762355200_n.jpg";
