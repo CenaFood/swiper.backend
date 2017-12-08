@@ -10,6 +10,7 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using ch.cena.swiper.backend.service.Contracts.Service;
 
 namespace ch.cena.swiper.backend.api
 {
@@ -33,6 +34,8 @@ namespace ch.cena.swiper.backend.api
             services.AddTransient<IAnnotationService, AnnotationService>();
             services.AddTransient<IChallengeService, ChallengeService>();
             services.AddTransient<IProjectService, ProjectService>();
+            services.AddTransient<IImageService, ImageService>();
+
 
 
         }

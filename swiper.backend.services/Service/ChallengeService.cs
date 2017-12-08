@@ -8,6 +8,7 @@ using ch.cena.swiper.backend.data;
 using System.Linq;
 using ch.cena.swiper.backend.service.DTOs;
 using AutoMapper.QueryableExtensions;
+using ch.cena.swiper.backend.service.Contracts.Service;
 
 namespace ch.cena.swiper.backend.service.Service
 {
@@ -15,8 +16,8 @@ namespace ch.cena.swiper.backend.service.Service
     {
 
         private readonly SwiperContext context;
-        private readonly ImageService imgService;
-        public ChallengeService(SwiperContext swiperContext, ImageService imageService)
+        private readonly IImageService imgService;
+        public ChallengeService(SwiperContext swiperContext, IImageService imageService)
         {
             context = swiperContext;
             imgService = imageService;
