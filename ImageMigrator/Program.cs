@@ -23,8 +23,8 @@ namespace ImageMigrator
 
             string projectName = "cena"; // TODO Config
             string challengeTypeName = "cena"; // TODO Config
-            string mainPath = @"C:\Users\phili\Desktop\PickupMigrate"; // TODO Config
-            string donePath = @"C:\Users\phili\Desktop\Done"; // TODO Config
+            string mainPath = @"C:\Users\phili\Desktop\Pickup"; // TODO Config
+            string donePath = @"C:\Users\phili\Desktop\images"; // TODO Config
             if (MigrationArguments.TryParse(args, out arguments) || true)
             {
                 var optionsBuilder = new DbContextOptionsBuilder<SwiperContext>();

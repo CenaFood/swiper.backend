@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ch.cena.swiper.backend.data.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialSetup : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,9 +26,9 @@ namespace ch.cena.swiper.backend.data.Migrations
                 columns: table => new
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IssueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ProjectDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ExpiryDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    IssueDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,7 +55,7 @@ namespace ch.cena.swiper.backend.data.Migrations
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ChallengeTypeID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    Descripton = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -74,7 +74,7 @@ namespace ch.cena.swiper.backend.data.Migrations
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ChallengeTypeID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Payload = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProjectID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -99,9 +99,12 @@ namespace ch.cena.swiper.backend.data.Migrations
                 columns: table => new
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AnswerID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Answer = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AnswerID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     ChallengeID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Payload = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Latitude = table.Column<float>(type: "real", nullable: false),
+                    LocalTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Longitude = table.Column<float>(type: "real", nullable: false),
                     UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -112,7 +115,7 @@ namespace ch.cena.swiper.backend.data.Migrations
                         column: x => x.AnswerID,
                         principalTable: "Answers",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Annotations_Challenges_ChallengeID",
                         column: x => x.ChallengeID,

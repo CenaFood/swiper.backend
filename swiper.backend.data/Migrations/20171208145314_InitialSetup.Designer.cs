@@ -11,8 +11,8 @@ using System;
 namespace ch.cena.swiper.backend.data.Migrations
 {
     [DbContext(typeof(SwiperContext))]
-    [Migration("20171103102941_RenamingPayload")]
-    partial class RenamingPayload
+    [Migration("20171208145314_InitialSetup")]
+    partial class InitialSetup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,6 +31,12 @@ namespace ch.cena.swiper.backend.data.Migrations
                     b.Property<Guid?>("AnswerID");
 
                     b.Property<Guid>("ChallengeID");
+
+                    b.Property<float>("Latitude");
+
+                    b.Property<DateTimeOffset>("LocalTime");
+
+                    b.Property<float>("Longitude");
 
                     b.Property<Guid>("UserID");
 
@@ -52,7 +58,7 @@ namespace ch.cena.swiper.backend.data.Migrations
 
                     b.Property<Guid?>("ChallengeTypeID");
 
-                    b.Property<string>("Descripton");
+                    b.Property<string>("Text");
 
                     b.HasKey("ID");
 
@@ -68,7 +74,7 @@ namespace ch.cena.swiper.backend.data.Migrations
 
                     b.Property<Guid>("ChallengeTypeID");
 
-                    b.Property<string>("Payload");
+                    b.Property<string>("FileName");
 
                     b.Property<Guid>("ProjectID");
 
@@ -100,11 +106,11 @@ namespace ch.cena.swiper.backend.data.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime?>("ExpiryDate");
+                    b.Property<DateTimeOffset?>("ExpiryDate");
 
-                    b.Property<DateTime>("IssueDate");
+                    b.Property<DateTimeOffset>("IssueDate");
 
-                    b.Property<string>("ProjectDescription");
+                    b.Property<string>("Name");
 
                     b.HasKey("ID");
 
