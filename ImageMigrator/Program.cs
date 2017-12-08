@@ -33,7 +33,7 @@ namespace ImageMigrator
                 using (var context = new SwiperContext(optionsBuilder.Options))
                 {
                     var projectService = new ProjectService(context);
-                    var challengeService = new ChallengeService(context);
+                    var challengeService = new ChallengeService(context, new ImageService(context));
                     var migrateService = new MigrateService(context);
 
                     var project = projectService.GetProjectByName(projectName);

@@ -39,14 +39,14 @@ namespace ch.cena.swiper.backend.service.Service
 
         public Project GetProjectByName(string name)
         {
-            return context.Projects.FirstOrDefault(i => i.ExpiryDate > DateTime.Now && i.Description.ToLower() == name.ToLower().Trim());
+            return context.Projects.FirstOrDefault(i => i.ExpiryDate > DateTime.Now && i.Name.ToLower() == name.ToLower().Trim());
         }
 
         public Project CreateProject(string name)
         {
             var project = new Project()
             {
-                Description = name,
+                Name = name,
                 ExpiryDate = DateTime.Now.AddYears(2),
                 IssueDate = DateTime.Now
             };
