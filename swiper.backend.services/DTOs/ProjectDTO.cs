@@ -9,7 +9,7 @@ namespace ch.cena.swiper.backend.service.DTOs
     public class ProjectDTO : IProject
     {
         public Guid ID { get; set; }
-        public string Description { get; set; }
+        public string Name { get; set; }
         public DateTimeOffset IssueDate { get; set; }
         public DateTimeOffset? ExpiryDate { get; set; }
 

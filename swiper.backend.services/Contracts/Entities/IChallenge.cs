@@ -8,7 +8,7 @@ namespace ch.cena.swiper.backend.service.Contracts.Entities
     {
         Guid ID { get; }
         Guid ProjectID { get; }
-        string Type { get; }
+        string ChallengeType { get; }
         string Description { get; }
         IImage Image { get; }
         IEnumerable<string> Answers { get; }

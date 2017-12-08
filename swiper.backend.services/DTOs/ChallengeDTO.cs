@@ -12,7 +12,7 @@ namespace ch.cena.swiper.backend.service.DTOs
 
         public Guid ID { get; set; }
         public Guid ProjectID { get; set; }
-        public string Type { get; set;  }
+        public string ChallengeType { get; set;  }
         public string Description { get; set; }
         public IImage Image { get; set; }
         public IEnumerable<string> Answers { get; set; }

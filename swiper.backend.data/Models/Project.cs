@@ -6,7 +6,7 @@ namespace ch.cena.swiper.backend.data.Models
 {
     public class Project : BaseEntity
     {
-        public string Description { get; set; }
+        public string Name { get; set; }
         public DateTimeOffset IssueDate { get; set; }
         public DateTimeOffset? ExpiryDate { get; set; }
 

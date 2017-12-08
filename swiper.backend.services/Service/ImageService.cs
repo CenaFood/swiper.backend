@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace ch.cena.swiper.backend.service.Service
 {
-    class ImageService
+    public class ImageService
     {
         private readonly SwiperContext context;
         public ImageService(SwiperContext swiperContext)

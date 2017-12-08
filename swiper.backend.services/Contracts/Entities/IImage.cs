@@ -7,7 +7,7 @@ namespace ch.cena.swiper.backend.service.Contracts.Entities
     public interface IImage
     {
         string FileName { get; }
-        string Extension { get; }
+        string FileExtension { get; }
         int Height { get; }
         int Width { get; }
         string Url { get; }

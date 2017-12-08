@@ -6,7 +6,7 @@ namespace ch.cena.swiper.backend.data.Models
 {
     public class Answer : BaseEntity
     {
-        public string Descripton { get; set; }
+        public string Text { get; set; }
 
         public ICollection<Annotation> Annotations { get; set; }
         public ICollection<ChallengeType> ChallengeTypes;

@@ -9,7 +9,7 @@ namespace ch.cena.swiper.backend.service.DTOs
     {
         public string ID { get; set; }
         public string FileName { get; set; }
-        public string Extension { get; set; }
+        public string FileExtension { get; set; }
         public int Height { get; set; }
         public int Width { get; set; }
         public string Url { get; set; }

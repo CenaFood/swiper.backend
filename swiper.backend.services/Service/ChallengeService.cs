@@ -15,19 +15,32 @@ namespace ch.cena.swiper.backend.service.Service
     {
 
         private readonly SwiperContext context;
-        public ChallengeService(SwiperContext swiperContext)
+        private readonly ImageService imgService;
+        public ChallengeService(SwiperContext swiperContext, ImageService imageService)
         {
             context = swiperContext;
+            imgService = imageService;
         }
 
         public IEnumerable<IChallenge> GetChallenges(IUser user)
         {
             // TODO: Check performance
-            return context.Challenges.Where(c => !c.Annotations.Any(a => a.UserID == user.ID))
+            var challenges = context.Challenges.Where(c => !c.Annotations.Any(a => a.UserID == user.ID))
                               .OrderByRandom()
                               .Take(20)
-                              .ProjectTo<ChallengeDTO>()
+                              .Select(c =>
+                                new ChallengeDTO {
+                                    ID = c.ID,
+                                    Answers = c.ChallengeType.Answers.Select(t=> t.Text).ToList(),
+                                    Description = c.ChallengeType.Description,
+                                    ProjectID = c.ProjectID,
+                                    ChallengeType = c.ChallengeType.Name,
+                                    Image = imgService.GetImageByFilename(c.FileName)
+                                })
                               .ToList();
+
+            return challenges;
+
         }
 
         public IEnumerable<IChallenge> GetChallengesFor(IUser user, Guid projectID)
@@ -59,7 +72,7 @@ namespace ch.cena.swiper.backend.service.Service
         {
             var challengeType = new ChallengeType()
             {
-                Answers = answers.Select(i => new Answer() { Descripton = i}).ToList(),
+                Answers = answers.Select(i => new Answer() { Text = i}).ToList(),
                 Name = name
             };
 
