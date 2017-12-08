@@ -6,8 +6,13 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.service.DTOs
 {
-    public class AnnotationDTO : Annotation, IAnnotation
+    public class AnnotationDTO : IAnnotation
     {
-        public ILocation Location => new LocationDTO(Latitude, Longitude);
+        public Guid ChallengeID { get; set; }
+        public Guid UserID { get; set; }
+        public string Answer { get; set; }
+        public float Latitude { get; set; }
+        public float Longitude { get; set; }
+        public DateTimeOffset LocalTime { get; set; }
     }
 }

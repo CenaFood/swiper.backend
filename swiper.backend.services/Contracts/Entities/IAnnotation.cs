@@ -17,9 +17,12 @@ namespace ch.cena.swiper.backend.service.Contracts.Entities
         string Answer { get; }
 
         [Required]
-        ILocation Location { get; }
+        float Latitude { get; }
 
         [Required]
-        DateTime LocalTime { get; }
+        float Longitude { get; }
+
+        [Required]
+        DateTimeOffset LocalTime { get; }
     }
 }

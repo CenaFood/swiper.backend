@@ -6,14 +6,12 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.service.DTOs
 {
-    public class ProjectDTO : Project, IProject
+    public class ProjectDTO : IProject
     {
-        public ProjectDTO(Project project)
-        {
-            this.ID = project.ID;
-            this.Description = project.Description;
-            this.ExpiryDate = project.ExpiryDate;
-            this.IssueDate = project.IssueDate;
-        }
+        public Guid ID { get; set; }
+        public string Description { get; set; }
+        public DateTimeOffset IssueDate { get; set; }
+        public DateTimeOffset? ExpiryDate { get; set; }
+
     }
 }

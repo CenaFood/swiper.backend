@@ -7,6 +7,7 @@ using ch.cena.swiper.backend.service.Contracts.Entities;
 using ch.cena.swiper.backend.data;
 using System.Linq;
 using ch.cena.swiper.backend.service.DTOs;
+using AutoMapper.QueryableExtensions;
 
 namespace ch.cena.swiper.backend.service.Service
 {
@@ -25,8 +26,8 @@ namespace ch.cena.swiper.backend.service.Service
             return context.Challenges.Where(c => !c.Annotations.Any(a => a.UserID == user.ID))
                               .OrderByRandom()
                               .Take(20)
-                              .ToList()
-                              .Cast<ChallengeDTO>();
+                              .ProjectTo<ChallengeDTO>()
+                              .ToList();
         }
 
         public IEnumerable<IChallenge> GetChallengesFor(IUser user, Guid projectID)
@@ -35,8 +36,8 @@ namespace ch.cena.swiper.backend.service.Service
                             .Where(c => c.ProjectID == projectID)
                             .OrderByRandom()
                             .Take(20)
-                            .ToList()
-                            .Cast<ChallengeDTO>();
+                            .ProjectTo<ChallengeDTO>()
+                            .ToList();
         }
 
         public IEnumerable<IChallenge> GetChallengesOf(IUser user, string type)
@@ -45,13 +46,15 @@ namespace ch.cena.swiper.backend.service.Service
                               .Where(c => c.ChallengeType.Description == type)
                               .OrderByRandom()
                               .Take(20)
-                              .ToList()
-                              .Cast<ChallengeDTO>();
+                              .ProjectTo<ChallengeDTO>()
+                              .ToList();
         }
+
         public ChallengeType GetChallengeTypeByName(string name)
         {
             return context.ChallengeTypes.FirstOrDefault(i => i.Name.ToLower() == name.ToLower().Trim());
         }
+
         public ChallengeType CreateChallengeType(string name, List<string> answers)
         {
             var challengeType = new ChallengeType()

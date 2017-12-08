@@ -29,8 +29,8 @@ namespace ch.cena.swiper.backend.service.Service
                 ChallengeID = annotation.ChallengeID,
                 Answer = annotation.Answer,
                 UserID = annotation.UserID,
-                Latitude = annotation.Location.Latitude,
-                Longitude = annotation.Location.Longitude,
+                Latitude = annotation.Latitude,
+                Longitude = annotation.Longitude,
                 LocalTime = annotation.LocalTime
             };
             context.Annotations.Add(newItem);

@@ -15,7 +15,7 @@ namespace ch.cena.swiper.backend.api.Controllers
             _service = challengeService;
         }
 
-        [HttpGet("api/challenges")]
+        [HttpGet("challenges")]
         public IActionResult GetChallenges()
         {
             var result = _service.GetChallenges(UserDTO.GetDummy());

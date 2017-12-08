@@ -7,8 +7,8 @@ namespace ch.cena.swiper.backend.data.Models
     public class Project : BaseEntity
     {
         public string Description { get; set; }
-        public DateTime IssueDate { get; set; }
-        public DateTime? ExpiryDate { get; set; }
+        public DateTimeOffset IssueDate { get; set; }
+        public DateTimeOffset? ExpiryDate { get; set; }
 
         public ICollection<Challenge> Challenges { get; set; }
     }

@@ -6,9 +6,9 @@ namespace ch.cena.swiper.backend.service.Contracts.Entities
 {
     public interface IProject
     {
-        Guid ID { get; }
-        string Description {get;}
-        DateTime IssueDate { get; }
-        DateTime? ExpiryDate { get; }
+        Guid ID { get;  }
+        string Description { get; }
+        DateTimeOffset IssueDate { get; }
+        DateTimeOffset? ExpiryDate { get; }
     }
 }

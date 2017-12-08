@@ -6,8 +6,13 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.service.DTOs
 {
-    public class UserDTO : User, IUser
+    public class UserDTO : IUser
     {
+        public Guid ID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string MailAddress { get; set; }
+
         public string Name => $"{this.FirstName} {this.LastName}";
 
 
