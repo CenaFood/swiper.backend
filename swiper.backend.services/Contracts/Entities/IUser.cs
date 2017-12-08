@@ -9,7 +9,11 @@ namespace ch.cena.swiper.backend.service.Contracts.Entities
     {
         [Required]
         Guid ID { get; }
-        [Required]
         string Name { get; }
+        string FirstName { get; }        
+        string LastName { get;  }
+
+        [Required]
+        string MailAddress { get;  }
     }
 }
