@@ -7,15 +7,20 @@ using System.Linq;
 using System.IO;
 using ch.cena.swiper.backend.service.Contracts.Service;
 using ch.cena.swiper.backend.service.Contracts.Entities;
+using Microsoft.Extensions.Options;
+using ch.cena.swiper.backend.service.Contracts.Configuration;
 
 namespace ch.cena.swiper.backend.service.Service
 {
     public class ImageService: IImageService
     {
         private readonly SwiperContext context;
-        public ImageService(SwiperContext swiperContext)
+        private readonly IOptions<HostConfig> hostConfig;
+
+        public ImageService(SwiperContext swiperContext, IOptions<HostConfig> hostConfig)
         {
             context = swiperContext;
+            this.hostConfig = hostConfig;
         }
 
         public IImage GetImageByChallengeId(Guid challengeID)
@@ -34,7 +39,8 @@ namespace ch.cena.swiper.backend.service.Service
                 FileExtension = Path.GetExtension(filename),
                 Height = 512,
                 Width = 512,
-                Url = "http://192.168.100310/images/" + filename
+                //TODO: Make this more save
+                Url = hostConfig.Value.HostingUri + hostConfig.Value.ImageHostFolder + filename
             };            
         }
 

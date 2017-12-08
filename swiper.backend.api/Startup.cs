@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using ch.cena.swiper.backend.service.Contracts.Service;
+using ch.cena.swiper.backend.service.Contracts.Configuration;
 
 namespace ch.cena.swiper.backend.api
 {
@@ -29,7 +30,11 @@ namespace ch.cena.swiper.backend.api
             services.AddDbContext<SwiperContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DebugConnection")));
 
             services.AddMvc();
+
             services.AddOptions();
+            services.Configure<HostConfig>(Configuration.GetSection("Hosting"));
+            services.Configure<StorageConfig>(Configuration.GetSection("Storage"));
+
 
             services.AddTransient<IAnnotationService, AnnotationService>();
             services.AddTransient<IChallengeService, ChallengeService>();
@@ -48,12 +53,12 @@ namespace ch.cena.swiper.backend.api
                 app.UseDeveloperExceptionPage();
             }
             app.UseMvc();
-            //app.UseStaticFiles(new StaticFileOptions()
-            //{
-            //    FileProvider = new PhysicalFileProvider(
-            //    Path.Combine(Directory.GetCurrentDirectory(), Configuration["Storage:ImageFolder"])),
-            //    RequestPath = new PathString("/images")
-            //});
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                Path.Combine(Directory.GetCurrentDirectory(), Configuration["Storage:ImageFolder"])),
+                RequestPath = new PathString(Configuration["Hosting:ImageHostFolder"])
+            });
         }
     }
 }
