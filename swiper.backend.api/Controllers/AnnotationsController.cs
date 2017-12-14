@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ch.cena.swiper.backend.service.DTOs;
 using ch.cena.swiper.backend.services.Contracts;
+using ch.cena.swiper.backend.service.Contracts.Entities;
+using System.Collections.Generic;
 
 namespace ch.cena.swiper.backend.api.Controllers
 {
@@ -15,13 +17,27 @@ namespace ch.cena.swiper.backend.api.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateAnnotation([FromBody] AnnotationDTO annotation)
+        public IActionResult CreateAnnotation([FromBody] IAnnotation annotation)
         {
             if (!ModelState.IsValid) {
                 BadRequest(ModelState);
             }
 
             _service.InsertAnnotation(annotation);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult CreateAnnotation([FromBody] IEnumerable<IAnnotation> annotations)
+        {
+            if (!ModelState.IsValid)
+            {
+                BadRequest(ModelState);
+            }
+
+            foreach(var annotation in annotations)
+                _service.InsertAnnotation(annotation);
 
             return Ok();
         }
