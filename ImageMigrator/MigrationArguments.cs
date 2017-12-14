@@ -7,10 +7,14 @@ namespace ImageMigrator
 {
     class MigrationArguments
     {
-        bool createProject;
-        string ProjectName { get; set; }
-        string ImagesDirectory { get; set; }
-        
+        public bool CreateProject { get; set; }
+        public string ProjectName { get; set; }
+        public string PickupDirectory { get; set; }
+        public string ImagesDirectory { get; set; }
+
+        public string ChallengeTypeName { get; set; }
+
+
         public bool IsValid()
         {
             return !String.IsNullOrEmpty(ProjectName)
@@ -22,6 +26,10 @@ namespace ImageMigrator
         {
             var errors = new List<string>();
             if (String.IsNullOrEmpty(ProjectName)) errors.Add("No project name specified.");
+
+            if (String.IsNullOrEmpty(PickupDirectory)) errors.Add("No pick up directory specified.");
+            else if (!Directory.Exists(PickupDirectory)) errors.Add("Pick up directory does not exist.");
+
             if (String.IsNullOrEmpty(ImagesDirectory)) errors.Add("No images directory specified.");
             else if (!Directory.Exists(ImagesDirectory)) errors.Add("Images directory does not exist.");
 
@@ -36,7 +44,7 @@ namespace ImageMigrator
             {
                 if (args[index] == "-c")
                 {
-                    migrationArguments.createProject = true;
+                    migrationArguments.CreateProject = true;
                     index++;
                 }
 
