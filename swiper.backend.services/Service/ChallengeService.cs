@@ -8,7 +8,7 @@ using ch.cena.swiper.backend.data;
 using System.Linq;
 using ch.cena.swiper.backend.service.DTOs;
 using AutoMapper.QueryableExtensions;
-using ch.cena.swiper.backend.service.Contracts.Service;
+using ch.cena.swiper.backend.service.Contracts;
 
 namespace ch.cena.swiper.backend.service.Service
 {

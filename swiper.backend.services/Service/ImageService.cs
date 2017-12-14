@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.IO;
-using ch.cena.swiper.backend.service.Contracts.Service;
+using ch.cena.swiper.backend.service.Contracts;
 using ch.cena.swiper.backend.service.Contracts.Entities;
 using Microsoft.Extensions.Options;
 using ch.cena.swiper.backend.service.Contracts.Configuration;

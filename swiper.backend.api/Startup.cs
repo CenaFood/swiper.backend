@@ -9,9 +9,8 @@ using ch.cena.swiper.backend.services.Contracts;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using ch.cena.swiper.backend.service.Contracts.Service;
 using ch.cena.swiper.backend.service.Contracts.Configuration;
+using ch.cena.swiper.backend.service.Contracts;
 
 namespace ch.cena.swiper.backend.api
 {

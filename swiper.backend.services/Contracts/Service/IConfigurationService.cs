@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ch.cena.swiper.backend.service.Contracts.Service
+namespace ch.cena.swiper.backend.service.Contracts
 {
     interface IConfigurationService
     {
