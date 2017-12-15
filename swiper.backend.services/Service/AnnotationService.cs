@@ -27,7 +27,7 @@ namespace ch.cena.swiper.backend.service.Service
             Annotation newItem = new Annotation()
             {
                 ChallengeID = annotation.ChallengeID,
-                Answer = annotation.Answer,
+                AnswerText = annotation.Answer,
                 UserID = annotation.UserID,
                 Latitude = annotation.Latitude,
                 Longitude = annotation.Longitude,

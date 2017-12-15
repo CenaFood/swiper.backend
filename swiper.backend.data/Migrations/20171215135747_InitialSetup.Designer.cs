@@ -11,7 +11,7 @@ using System;
 namespace ch.cena.swiper.backend.data.Migrations
 {
     [DbContext(typeof(SwiperContext))]
-    [Migration("20171208145314_InitialSetup")]
+    [Migration("20171215135747_InitialSetup")]
     partial class InitialSetup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,9 +26,9 @@ namespace ch.cena.swiper.backend.data.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Answer");
-
-                    b.Property<Guid?>("AnswerID");
+                    b.Property<string>("AnswerText")
+                        .IsRequired()
+                        .HasMaxLength(255);
 
                     b.Property<Guid>("ChallengeID");
 
@@ -41,8 +41,6 @@ namespace ch.cena.swiper.backend.data.Migrations
                     b.Property<Guid>("UserID");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("AnswerID");
 
                     b.HasIndex("ChallengeID");
 
@@ -58,7 +56,9 @@ namespace ch.cena.swiper.backend.data.Migrations
 
                     b.Property<Guid?>("ChallengeTypeID");
 
-                    b.Property<string>("Text");
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(255);
 
                     b.HasKey("ID");
 
@@ -74,7 +74,8 @@ namespace ch.cena.swiper.backend.data.Migrations
 
                     b.Property<Guid>("ChallengeTypeID");
 
-                    b.Property<string>("FileName");
+                    b.Property<string>("FileName")
+                        .HasMaxLength(124);
 
                     b.Property<Guid>("ProjectID");
 
@@ -92,9 +93,13 @@ namespace ch.cena.swiper.backend.data.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(255);
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(32);
 
                     b.HasKey("ID");
 
@@ -110,7 +115,9 @@ namespace ch.cena.swiper.backend.data.Migrations
 
                     b.Property<DateTimeOffset>("IssueDate");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(64);
 
                     b.HasKey("ID");
 
@@ -126,7 +133,9 @@ namespace ch.cena.swiper.backend.data.Migrations
 
                     b.Property<string>("LastName");
 
-                    b.Property<string>("MailAddress");
+                    b.Property<string>("MailAddress")
+                        .IsRequired()
+                        .HasMaxLength(62);
 
                     b.HasKey("ID");
 
@@ -135,10 +144,6 @@ namespace ch.cena.swiper.backend.data.Migrations
 
             modelBuilder.Entity("ch.cena.swiper.backend.data.Models.Annotation", b =>
                 {
-                    b.HasOne("ch.cena.swiper.backend.data.Models.Answer")
-                        .WithMany("Annotations")
-                        .HasForeignKey("AnswerID");
-
                     b.HasOne("ch.cena.swiper.backend.data.Models.Challenge", "Challenge")
                         .WithMany("Annotations")
                         .HasForeignKey("ChallengeID")
