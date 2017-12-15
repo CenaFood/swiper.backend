@@ -12,7 +12,7 @@ using ch.cena.swiper.backend.service.Contracts.Configuration;
 
 namespace ch.cena.swiper.backend.service.Service
 {
-    public class ImageService: IImageService
+    public class ImageService : IImageService
     {
         private readonly SwiperContext context;
         private readonly IOptions<HostConfig> hostConfig;
@@ -32,16 +32,25 @@ namespace ch.cena.swiper.backend.service.Service
         public IImage GetImageByFilename(string filename)
         {
             if (String.IsNullOrEmpty(filename)) return null;
-            // TODO Get actual configuration and dimetions.
-            return new ImageDTO()
+            // TODO Get actual dimetions.
+
+            Uri imageUrl;
+            if (Uri.TryCreate($"{hostConfig.Value.HostingUri}{hostConfig.Value.ImageHostFolder}/{filename}", UriKind.Absolute, out imageUrl))
             {
-                FileName = filename,
-                FileExtension = Path.GetExtension(filename),
-                Height = 512,
-                Width = 512,
-                //TODO: Make this more save
-                Url = hostConfig.Value.HostingUri + hostConfig.Value.ImageHostFolder + filename
-            };            
+                return new ImageDTO()
+                {
+                    FileName = filename,
+                    FileExtension = Path.GetExtension(filename),
+                    Height = 512,
+                    Width = 512,
+                    Url = imageUrl.AbsoluteUri
+
+                };
+            }
+            else
+            {
+                return null;
+            }
         }
 
     }

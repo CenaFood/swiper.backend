@@ -63,11 +63,14 @@ namespace ImageMigrator
 
             for (int i = 0; i <= (fileNames.Count / 1000); i++)
             {
+                logger.LogInformation($"{i}000 to {i + 1}000: Start");
                 var files = fileNames.Skip(i * 1000).Take(1000).ToList();
                 var successfullFiles = migrateService.MigrateChalleges(project.ID, challengeType.ID, files);
 
                 foreach (var successfullFile in successfullFiles)
                     File.Move(Path.Combine(arguments.PickupDirectory, successfullFile), Path.Combine(arguments.ImagesDirectory, successfullFile));
+
+                logger.LogInformation($"{i}000 to {i + 1}000: Migrated");
             }
         }
 
