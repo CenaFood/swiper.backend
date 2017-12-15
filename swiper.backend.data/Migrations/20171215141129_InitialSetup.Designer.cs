@@ -11,7 +11,7 @@ using System;
 namespace ch.cena.swiper.backend.data.Migrations
 {
     [DbContext(typeof(SwiperContext))]
-    [Migration("20171215135747_InitialSetup")]
+    [Migration("20171215141129_InitialSetup")]
     partial class InitialSetup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,7 +54,7 @@ namespace ch.cena.swiper.backend.data.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("ChallengeTypeID");
+                    b.Property<Guid>("ChallengeTypeID");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -159,7 +159,8 @@ namespace ch.cena.swiper.backend.data.Migrations
                 {
                     b.HasOne("ch.cena.swiper.backend.data.Models.ChallengeType")
                         .WithMany("Answers")
-                        .HasForeignKey("ChallengeTypeID");
+                        .HasForeignKey("ChallengeTypeID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("ch.cena.swiper.backend.data.Models.Challenge", b =>

@@ -11,6 +11,9 @@ namespace ch.cena.swiper.backend.data.Models
         [MaxLength(255)]
         public string Text { get; set; }
 
-        public ICollection<ChallengeType> ChallengeTypes;
+        [Required]
+        public Guid ChallengeTypeID { get; set; }
+
+        public ChallengeType ChallengeTypes;
     }
 }

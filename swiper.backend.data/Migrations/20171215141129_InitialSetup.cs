@@ -54,7 +54,7 @@ namespace ch.cena.swiper.backend.data.Migrations
                 columns: table => new
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ChallengeTypeID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ChallengeTypeID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Text = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
@@ -65,7 +65,7 @@ namespace ch.cena.swiper.backend.data.Migrations
                         column: x => x.ChallengeTypeID,
                         principalTable: "ChallengeTypes",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
