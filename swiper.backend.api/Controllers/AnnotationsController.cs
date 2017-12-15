@@ -17,7 +17,7 @@ namespace ch.cena.swiper.backend.api.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateAnnotation([FromBody] IAnnotation annotation)
+        public IActionResult CreateAnnotation([FromBody] AnnotationDTO annotation)
         {
             if (!ModelState.IsValid) {
                 BadRequest(ModelState);
