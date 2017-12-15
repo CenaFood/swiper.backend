@@ -28,18 +28,18 @@ namespace ch.cena.swiper.backend.api.Controllers
             return Ok();
         }
 
-        [HttpPost]
-        public IActionResult CreateAnnotation([FromBody] IEnumerable<IAnnotation> annotations)
-        {
-            if (!ModelState.IsValid)
-            {
-                BadRequest(ModelState);
-            }
+        //[HttpPost]
+        //public IActionResult CreateAnnotation([FromBody] IEnumerable<IAnnotation> annotations)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        BadRequest(ModelState);
+        //    }
 
-            foreach(var annotation in annotations)
-                _service.InsertAnnotation(annotation);
+        //    foreach(var annotation in annotations)
+        //        _service.InsertAnnotation(annotation);
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
     }
 }
