@@ -55,7 +55,7 @@ namespace ImageMigrator
                 project = projectService.CreateProject(arguments.ProjectName);
 
             if (challengeType == null)
-                challengeType = challengeService.CreateChallengeType(arguments.ChallengeTypeName, new List<string>() { "Yes", "No" });
+                challengeType = challengeService.CreateChallengeType(arguments.ChallengeTypeName,"Would you eat this here and now?", new List<string>() { "Yes", "No" });
 
             var fileNames = Directory.EnumerateFiles(arguments.PickupDirectory)
                 .Select(i => Path.GetFileName(i))

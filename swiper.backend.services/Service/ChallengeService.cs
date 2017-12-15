@@ -69,12 +69,13 @@ namespace ch.cena.swiper.backend.service.Service
             return context.ChallengeTypes.FirstOrDefault(i => i.Name.ToLower() == name.ToLower().Trim());
         }
 
-        public ChallengeType CreateChallengeType(string name, List<string> answers)
+        public ChallengeType CreateChallengeType(string name,string description, List<string> answers)
         {
             var challengeType = new ChallengeType()
             {
                 Answers = answers.Select(i => new Answer() { Text = i}).ToList(),
-                Name = name
+                Name = name,
+                Description = description
             };
 
             context.ChallengeTypes.Add(challengeType);
