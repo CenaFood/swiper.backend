@@ -47,6 +47,9 @@ namespace ImageMigrator
             var projectService = serviceProvider.GetService<ProjectService>();
             var challengeService = serviceProvider.GetService<ChallengeService>();
             var migrateService = serviceProvider.GetService<MigrateService>();
+            var userService = serviceProvider.GetService<UserService>();
+
+            userService.AddDummyUser();
 
             var project = projectService.GetProjectByName(arguments.ProjectName);
             var challengeType = challengeService.GetChallengeTypeByName(arguments.ChallengeTypeName);
@@ -94,6 +97,7 @@ namespace ImageMigrator
 
             services.AddTransient<ChallengeService, ChallengeService>();
             services.AddTransient<ProjectService, ProjectService>();
+            services.AddTransient<UserService, UserService>();
             services.AddTransient<IImageService, ImageService>();
             services.AddTransient<MigrateService, MigrateService>();
         }
