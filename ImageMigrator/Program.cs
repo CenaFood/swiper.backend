@@ -41,8 +41,8 @@ namespace ImageMigrator
             arguments.ProjectName = "cena";
             arguments.ChallengeTypeName = "YesNo";
 
-            arguments.PickupDirectory = @"C:\Users\phili\Desktop\Pickup"; // TODO Config
-            arguments.ImagesDirectory = @"C:\Users\phili\Desktop\images"; // TODO Config
+            arguments.PickupDirectory = @"/Users/tricktron/Xcode/cena/ImagePickup"; // TODO Config
+            arguments.ImagesDirectory = @"/Users/tricktron/Xcode/cena/importedImages"; // TODO Config
 
             var projectService = serviceProvider.GetService<ProjectService>();
             var challengeService = serviceProvider.GetService<ChallengeService>();
