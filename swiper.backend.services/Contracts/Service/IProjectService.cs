@@ -12,5 +12,7 @@ namespace ch.cena.swiper.backend.services.Contracts
         IEnumerable<IProject> GetMyProjects(IUser user);
         void InsertProject(IUser user, IProject project);
         void CloseProject(IUser user, IProject project);
+        Project CreateProject(string projectName);
+        Project GetProjectByName(string projectName);
     }
 }

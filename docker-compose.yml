@@ -1,8 +1,23 @@
 version: '3'
 
 services:
-  ch.cena.swiper.backend.api:
-    image: ch.cena.swiper.backend.api
-    build:
-      context: .
-      dockerfile: swiper.backend.api/Dockerfile
+    ch.cena.swiper.backend.api:
+        image: ch.cena.swiper.backend.api
+        build:
+            context: .
+            dockerfile: swiper.backend.api/Dockerfile
+        # added port, in Dockerfile 80 is exposed which is mapped to 5000
+        ports:
+            - "80:80"
+        # Mount your local path to /images
+        volumes:
+            - c:/Users/phili/Desktop/images:/images
+        # make the backend dependent on the sql server
+        depends_on:
+            - db
+    # include the sql server into the container
+    db:
+        image: "microsoft/mssql-server-linux"
+        environment:
+            SA_PASSWORD: "yourStrong(!)Password"
+            ACCEPT_EULA: "Y"

@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ImageMigrator\ImageMigrator.csproj" />
     <ProjectReference Include="..\swiper.backend.services\ch.cena.swiper.backend.service.csproj" />
   </ItemGroup>
 
