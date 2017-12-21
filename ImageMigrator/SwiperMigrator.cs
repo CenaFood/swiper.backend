@@ -7,10 +7,12 @@ using ch.cena.swiper.backend.services.Contracts;
 using System.IO;
 using System.Linq;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using ch.cena.swiper.backend.service.Contracts.Configuration;
 
 namespace ImageMigrator
 {
-    class SwiperMigrator
+    public class SwiperMigrator
     {
 
         private readonly IProjectService projectService;
@@ -23,7 +25,9 @@ namespace ImageMigrator
                                 IChallengeService challengeService, 
                                 MigrateService migrateService, 
                                 UserService userService,
-                                ILogger<SwiperMigrator> logger) {
+                                ILogger<SwiperMigrator> logger,
+                                IOptions<HostConfig> hostConfig,
+                                IOptions<MigrationArguments> migrationConfig) {
             this.projectService = projectService;
             this.challengeService = challengeService;
             this.migrateService = migrateService;

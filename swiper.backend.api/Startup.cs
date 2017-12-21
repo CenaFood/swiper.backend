@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
 using ch.cena.swiper.backend.service.Contracts.Configuration;
 using ch.cena.swiper.backend.service.Contracts;
+using ImageMigrator;
 
 namespace ch.cena.swiper.backend.api
 {
@@ -58,6 +59,13 @@ namespace ch.cena.swiper.backend.api
                 Path.Combine(Directory.GetCurrentDirectory(), Configuration["Storage:ImageFolder"])),
                 RequestPath = new PathString(Configuration["Hosting:ImageHostFolder"])
             });
+
+            // Create DB on startup and do the migrations. Manual migrations are NOT needed anymore
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                serviceScope.ServiceProvider.GetService<SwiperContext>().Database.Migrate();
+                serviceScope.ServiceProvider.GetService<SwiperMigrator>().Migrate();
+            }
         }
     }
 }
