@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ImageMigrator
 {
-    class MigrationArguments
+    public class MigrationArguments
     {
         public bool CreateProject { get; set; }
         public string ProjectName { get; set; }

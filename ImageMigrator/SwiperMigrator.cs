@@ -21,7 +21,7 @@ namespace ImageMigrator
         private readonly UserService userService;
         private readonly ILogger _logger;
 
-        public SwiperMigrator(ProjectService projectService, 
+        public SwiperMigrator(IProjectService projectService, 
                                 IChallengeService challengeService, 
                                 MigrateService migrateService, 
                                 UserService userService,

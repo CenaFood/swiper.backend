@@ -12,6 +12,7 @@ using Microsoft.Extensions.FileProviders;
 using ch.cena.swiper.backend.service.Contracts.Configuration;
 using ch.cena.swiper.backend.service.Contracts;
 using ImageMigrator;
+using Microsoft.Extensions.Options;
 
 namespace ch.cena.swiper.backend.api
 {
@@ -41,12 +42,21 @@ namespace ch.cena.swiper.backend.api
             services.AddTransient<IProjectService, ProjectService>();
             services.AddTransient<IImageService, ImageService>();
 
+            services.AddTransient<UserService, UserService>();
+            services.AddTransient<MigrateService, MigrateService>();
+            services.AddTransient<SwiperMigrator, SwiperMigrator>();
+
 
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, 
+            IHostingEnvironment env, 
+            SwiperContext context, 
+            IOptions<HostConfig> hostConfig, 
+            IOptions<StorageConfig> storageConfig,
+            SwiperMigrator migrator)
         {
             if (env.IsDevelopment())
             {
@@ -56,16 +66,15 @@ namespace ch.cena.swiper.backend.api
             app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(
-                Path.Combine(Directory.GetCurrentDirectory(), Configuration["Storage:ImageFolder"])),
-                RequestPath = new PathString(Configuration["Hosting:ImageHostFolder"])
+                Path.Combine(Directory.GetCurrentDirectory(),storageConfig.Value.ImageFolder)),
+                RequestPath = new PathString(hostConfig.Value.ImageHostFolder)
             });
 
             // Create DB on startup and do the migrations. Manual migrations are NOT needed anymore
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                serviceScope.ServiceProvider.GetService<SwiperContext>().Database.Migrate();
-                serviceScope.ServiceProvider.GetService<SwiperMigrator>().Migrate();
-            }
+            context.Database.Migrate();
+            migrator.Migrate();
+
+
         }
     }
 }
