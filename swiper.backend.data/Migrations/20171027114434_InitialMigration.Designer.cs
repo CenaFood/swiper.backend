@@ -11,9 +11,10 @@ using System;
 namespace ch.cena.swiper.backend.data.Migrations
 {
     [DbContext(typeof(SwiperContext))]
-    partial class SwiperContextModelSnapshot : ModelSnapshot
+    [Migration("20171027114434_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,11 +26,11 @@ namespace ch.cena.swiper.backend.data.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Answer");
-
-                    b.Property<Guid?>("AnswerID");
+                    b.Property<Guid>("AnswerID");
 
                     b.Property<Guid>("ChallengeID");
+
+                    b.Property<string>("Payload");
 
                     b.Property<Guid>("UserID");
 
@@ -128,9 +129,10 @@ namespace ch.cena.swiper.backend.data.Migrations
 
             modelBuilder.Entity("ch.cena.swiper.backend.data.Models.Annotation", b =>
                 {
-                    b.HasOne("ch.cena.swiper.backend.data.Models.Answer")
+                    b.HasOne("ch.cena.swiper.backend.data.Models.Answer", "Answer")
                         .WithMany("Annotations")
-                        .HasForeignKey("AnswerID");
+                        .HasForeignKey("AnswerID")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ch.cena.swiper.backend.data.Models.Challenge", "Challenge")
                         .WithMany("Annotations")

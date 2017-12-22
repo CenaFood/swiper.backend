@@ -11,8 +11,8 @@ using System;
 namespace ch.cena.swiper.backend.data.Migrations
 {
     [DbContext(typeof(SwiperContext))]
-    [Migration("20171215141129_InitialSetup")]
-    partial class InitialSetup
+    [Migration("20171103102941_RenamingPayload")]
+    partial class RenamingPayload
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,21 +26,17 @@ namespace ch.cena.swiper.backend.data.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("AnswerText")
-                        .IsRequired()
-                        .HasMaxLength(255);
+                    b.Property<string>("Answer");
+
+                    b.Property<Guid?>("AnswerID");
 
                     b.Property<Guid>("ChallengeID");
-
-                    b.Property<float>("Latitude");
-
-                    b.Property<DateTimeOffset>("LocalTime");
-
-                    b.Property<float>("Longitude");
 
                     b.Property<Guid>("UserID");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("AnswerID");
 
                     b.HasIndex("ChallengeID");
 
@@ -54,11 +50,9 @@ namespace ch.cena.swiper.backend.data.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("ChallengeTypeID");
+                    b.Property<Guid?>("ChallengeTypeID");
 
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasMaxLength(255);
+                    b.Property<string>("Descripton");
 
                     b.HasKey("ID");
 
@@ -74,8 +68,7 @@ namespace ch.cena.swiper.backend.data.Migrations
 
                     b.Property<Guid>("ChallengeTypeID");
 
-                    b.Property<string>("FileName")
-                        .HasMaxLength(124);
+                    b.Property<string>("Payload");
 
                     b.Property<Guid>("ProjectID");
 
@@ -93,13 +86,9 @@ namespace ch.cena.swiper.backend.data.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(255);
+                    b.Property<string>("Description");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(32);
+                    b.Property<string>("Name");
 
                     b.HasKey("ID");
 
@@ -111,13 +100,11 @@ namespace ch.cena.swiper.backend.data.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTimeOffset?>("ExpiryDate");
+                    b.Property<DateTime?>("ExpiryDate");
 
-                    b.Property<DateTimeOffset>("IssueDate");
+                    b.Property<DateTime>("IssueDate");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(64);
+                    b.Property<string>("ProjectDescription");
 
                     b.HasKey("ID");
 
@@ -133,9 +120,7 @@ namespace ch.cena.swiper.backend.data.Migrations
 
                     b.Property<string>("LastName");
 
-                    b.Property<string>("MailAddress")
-                        .IsRequired()
-                        .HasMaxLength(62);
+                    b.Property<string>("MailAddress");
 
                     b.HasKey("ID");
 
@@ -144,6 +129,10 @@ namespace ch.cena.swiper.backend.data.Migrations
 
             modelBuilder.Entity("ch.cena.swiper.backend.data.Models.Annotation", b =>
                 {
+                    b.HasOne("ch.cena.swiper.backend.data.Models.Answer")
+                        .WithMany("Annotations")
+                        .HasForeignKey("AnswerID");
+
                     b.HasOne("ch.cena.swiper.backend.data.Models.Challenge", "Challenge")
                         .WithMany("Annotations")
                         .HasForeignKey("ChallengeID")
@@ -159,8 +148,7 @@ namespace ch.cena.swiper.backend.data.Migrations
                 {
                     b.HasOne("ch.cena.swiper.backend.data.Models.ChallengeType")
                         .WithMany("Answers")
-                        .HasForeignKey("ChallengeTypeID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ChallengeTypeID");
                 });
 
             modelBuilder.Entity("ch.cena.swiper.backend.data.Models.Challenge", b =>

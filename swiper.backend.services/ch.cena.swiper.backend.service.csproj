@@ -4,11 +4,11 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>ch.cena.swiper.backend.service</AssemblyName>
     <RootNamespace>ch.cena.swiper.backend.service</RootNamespace>
-    <Configurations>Debug;Release;Docker-Release</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <Folder Include="Contracts\Entities\" />
+    <Folder Include="Entities\" />
   </ItemGroup>
 
   <ItemGroup>
