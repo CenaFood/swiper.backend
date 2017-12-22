@@ -1,8 +1,34 @@
 version: '3'
 
 services:
-  ch.cena.swiper.backend.api:
-    image: ch.cena.swiper.backend.api
-    build:
-      context: .
-      dockerfile: swiper.backend.api/Dockerfile
+    ch.cena.swiper.backend.api:
+        image: ch.cena.swiper.backend.api
+        build:
+            context: .
+            dockerfile: swiper.backend.api/Dockerfile
+        # added port, in Dockerfile 80 is exposed which is mapped to 5000
+        ports:
+         - "80:80"
+        # Mount your local path to /images
+        volumes:
+            - /c/Users/phili/Desktop/images:/images
+            - /c/Users/phili/Desktop/Pickup:/pickup
+        # make the backend dependent on the sql server
+        environment:
+        # - ConnectionStrings:SqlConnection=
+          - ConnectionStrings:SqlConnection=server=db;Initial Catalog=cena;Integrated Security=False;User ID=sa;Password=yourStrong(!)Password;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
+          - Hosting:HostingUri=http://localhost
+          - Migration:CreateProject=true
+          - Migration:ProjectName=cena
+          - Migration:Migrate=true
+          - Migration:ChallengeTypeName=cenaSwiper
+          - Migration:ChallengeQuestion=Would you like to eat this here and now?
+          - Migration:ChallengeAnswers=["Yes", "No"]
+        depends_on:
+            - db
+    # include the sql server into the container
+    db:
+        image: "microsoft/mssql-server-linux"
+        environment:
+            SA_PASSWORD: "yourStrong(!)Password"
+            ACCEPT_EULA: "Y"

@@ -17,7 +17,7 @@ namespace ch.cena.swiper.backend.service.Service
 
         public void AddDummyUser()
         {
-            if (!context.Users.Any(u => u.ID.Equals("6A1BA20A-8D25-4E71-8BD8-E6872FD53ADA")))
+            if (!context.Users.Any(u => u.ID.Equals(Guid.Parse("6A1BA20A-8D25-4E71-8BD8-E6872FD53ADA"))))
             {
                 context.Users.Add(new User
                 {
