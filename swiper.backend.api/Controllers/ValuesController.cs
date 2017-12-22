@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ch.cena.swiper.backend.service.DTOs;
 
 namespace ch.cena.swiper.backend.api.Controllers
 {
@@ -19,14 +18,9 @@ namespace ch.cena.swiper.backend.api.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public string Get(int id)
         {
-            var resutl = new ImageDTO();
-            resutl.Height = 400;
-            resutl.Width = 400;
-            resutl.FileName = "23825329_702402206622090_500261469762355200_n.jpg";
-            resutl.Url = "https://scontent-amt2-1.cdninstagram.com/t51.2885-15/e35/23825329_702402206622090_500261469762355200_n.jpg";
-            return Json(resutl);
+            return "value";
         }
 
         // POST api/values

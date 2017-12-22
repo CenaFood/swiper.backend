@@ -1,28 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace ch.cena.swiper.backend.service.Contracts.Entities
 {
-    public interface IAnnotation
+    interface IAnnotation
     {
-        [Required]
-        Guid ChallengeID { get; }
-
-        [Required]
-        Guid UserID { get; }
-
-        [Required]
-        string Answer { get; }
-
-        [Required]
-        float Latitude { get; }
-
-        [Required]
-        float Longitude { get; }
-
-        [Required]
-        DateTimeOffset LocalTime { get; }
+        Guid ChallengeID { get; set; }
+        Guid UserID { get; set; }
+        string Answer { get; set; }
     }
 }
