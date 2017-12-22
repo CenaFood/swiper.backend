@@ -11,8 +11,17 @@ services:
             - "80:80"
         # Mount your local path to /images
         volumes:
-            - c:/Users/phili/Desktop/images:/images
+            - /Users/phili/Desktop/images:/images
+            - /Users/phili/Desktop/Pickup:/pickup
         # make the backend dependent on the sql server
+        environment:
+          "Hosting:HostingUri": "http://localhost"
+          "Migration:Migrate": "true"
+          "Migration:CreateProject": "true"
+          "Migration:ProjectName": "cena"
+          "Migration:ChallengeTypeName": "cenaSwiper"
+          "Migration:ChallengeQuestion": "Would you like to eat this here and now?"
+          "Migration:ChallengeAnswers": ("Yes", "No")
         depends_on:
             - db
     # include the sql server into the container
