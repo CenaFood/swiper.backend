@@ -52,8 +52,8 @@ namespace ImageMigrator
             if (project == null && migrationConfig.CreateProject)
                 project = projectService.CreateProject(migrationConfig.ProjectName);
 
-            if (challengeType == null)
-                challengeType = challengeService.CreateChallengeType(migrationConfig.ChallengeTypeName, migrationConfig.ChallengeQuestion, migrationConfig.ChallengeAnswers.AsEnumerable());
+            if (challengeType == null) //TODO: Read from Config Yes No
+                challengeType = challengeService.CreateChallengeType(migrationConfig.ChallengeTypeName, migrationConfig.ChallengeQuestion, new List<string>(){ "Yes", "No"});
 
             var fileNames = Directory.EnumerateFiles(migrationConfig.PickupDirectory)
                 .Select(i => Path.GetFileName(i))

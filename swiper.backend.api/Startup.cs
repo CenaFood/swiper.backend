@@ -69,6 +69,7 @@ namespace ch.cena.swiper.backend.api
                 RequestPath = new PathString(hostConfig.Value.ImageHostFolder)
             });
 
+            
             if (migrationConfig.Value.Migrate)
             {
                 // Create DB on startup and do the migrations. Manual migrations are NOT needed anymore
