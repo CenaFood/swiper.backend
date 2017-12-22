@@ -11,7 +11,7 @@ namespace ch.cena.swiper.backend.services.Contracts
         IEnumerable<IChallenge> GetChallenges(IUser user);
         IEnumerable<IChallenge> GetChallengesFor(IUser user, Guid projectID);
         IEnumerable<IChallenge> GetChallengesOf(IUser user, string type);
-        ChallengeType CreateChallengeType(string name, string description, List<string> answers);
+        ChallengeType CreateChallengeType(string name, string description, IEnumerable<string> answers);
         ChallengeType GetChallengeTypeByName(string name);
     }
 }

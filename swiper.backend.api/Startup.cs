@@ -35,7 +35,7 @@ namespace ch.cena.swiper.backend.api
             services.AddOptions();
             services.Configure<HostConfig>(Configuration.GetSection("Hosting"));
             services.Configure<StorageConfig>(Configuration.GetSection("Storage"));
-
+            services.Configure<MigrationConfig>(Configuration.GetSection("Migration"));
 
             services.AddTransient<IAnnotationService, AnnotationService>();
             services.AddTransient<IChallengeService, ChallengeService>();
@@ -45,9 +45,6 @@ namespace ch.cena.swiper.backend.api
             services.AddTransient<UserService, UserService>();
             services.AddTransient<MigrateService, MigrateService>();
             services.AddTransient<SwiperMigrator, SwiperMigrator>();
-
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +53,7 @@ namespace ch.cena.swiper.backend.api
             SwiperContext context, 
             IOptions<HostConfig> hostConfig, 
             IOptions<StorageConfig> storageConfig,
+            IOptions<MigrationConfig> migrationConfig,
             SwiperMigrator migrator)
         {
             if (env.IsDevelopment())
@@ -66,15 +64,16 @@ namespace ch.cena.swiper.backend.api
             app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(
-                Path.Combine(Directory.GetCurrentDirectory(),storageConfig.Value.ImageFolder)),
+                storageConfig.Value.ImageFolder),
                 RequestPath = new PathString(hostConfig.Value.ImageHostFolder)
             });
 
-            // Create DB on startup and do the migrations. Manual migrations are NOT needed anymore
-            context.Database.Migrate();
-            migrator.Migrate();
-
- 
+            if (migrationConfig.Value.Migrate)
+            {
+                // Create DB on startup and do the migrations. Manual migrations are NOT needed anymore
+                context.Database.Migrate();
+                migrator.Migrate();
+            }
         }
     }
 }

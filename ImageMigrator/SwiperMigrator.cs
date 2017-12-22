@@ -20,18 +20,22 @@ namespace ImageMigrator
         private readonly MigrateService migrateService;
         private readonly UserService userService;
         private readonly ILogger _logger;
+        private readonly StorageConfig storageConfig;
+        private readonly MigrationConfig migrationConfig;
 
         public SwiperMigrator(IProjectService projectService, 
                                 IChallengeService challengeService, 
                                 MigrateService migrateService, 
                                 UserService userService,
                                 ILogger<SwiperMigrator> logger,
-                                IOptions<HostConfig> hostConfig,
-                                IOptions<MigrationArguments> migrationConfig) {
+                                IOptions<StorageConfig> storageConfig,
+                                IOptions<MigrationConfig> migrationConfig) {
             this.projectService = projectService;
             this.challengeService = challengeService;
             this.migrateService = migrateService;
             this.userService = userService;
+            this.storageConfig = storageConfig.Value;
+            this.migrationConfig = migrationConfig.Value;
             _logger = logger;
 
         }
@@ -40,27 +44,18 @@ namespace ImageMigrator
         {
 
             // Do Migration
-            var arguments = new MigrationArguments();
-
-            arguments.CreateProject = true;
-            arguments.ProjectName = "cena";
-            arguments.ChallengeTypeName = "YesNo";
-
-            arguments.PickupDirectory = @"C:\Users\phili\Desktop\Pickup"; // TODO Config
-            arguments.ImagesDirectory = @"C:\Users\phili\Desktop\images"; // TODO Config
-
             userService.AddDummyUser();
 
-            var project = projectService.GetProjectByName(arguments.ProjectName);
-            var challengeType = challengeService.GetChallengeTypeByName(arguments.ChallengeTypeName);
+            var project = projectService.GetProjectByName(migrationConfig.ProjectName);
+            var challengeType = challengeService.GetChallengeTypeByName(migrationConfig.ChallengeTypeName);
 
-            if (project == null && arguments.CreateProject)
-                project = projectService.CreateProject(arguments.ProjectName);
+            if (project == null && migrationConfig.CreateProject)
+                project = projectService.CreateProject(migrationConfig.ProjectName);
 
             if (challengeType == null)
-                challengeType = challengeService.CreateChallengeType(arguments.ChallengeTypeName, "Would you eat this here and now?", new List<string>() { "Yes", "No" });
+                challengeType = challengeService.CreateChallengeType(migrationConfig.ChallengeTypeName, migrationConfig.ChallengeQuestion, migrationConfig.ChallengeAnswers.AsEnumerable());
 
-            var fileNames = Directory.EnumerateFiles(arguments.PickupDirectory)
+            var fileNames = Directory.EnumerateFiles(migrationConfig.PickupDirectory)
                 .Select(i => Path.GetFileName(i))
                 .ToList();
 
@@ -71,7 +66,7 @@ namespace ImageMigrator
                 var successfullFiles = migrateService.MigrateChalleges(project.ID, challengeType.ID, files);
 
                 foreach (var successfullFile in successfullFiles)
-                    File.Move(Path.Combine(arguments.PickupDirectory, successfullFile), Path.Combine(arguments.ImagesDirectory, successfullFile));
+                    File.Move(Path.Combine(migrationConfig.PickupDirectory, successfullFile), Path.Combine(storageConfig.ImageFolder, successfullFile));
 
                 _logger.LogInformation($"{i}000 to {i + 1}000: Migrated");
             }

@@ -6,6 +6,7 @@ FROM microsoft/aspnetcore-build:2.0 AS build
 WORKDIR /src
 COPY *.sln ./
 COPY swiper.backend.api/ch.cena.swiper.backend.api.csproj swiper.backend.api/
+COPY ImageMigrator/ImageMigrator.csproj ImageMigrator/
 COPY swiper.backend.services/ch.cena.swiper.backend.service.csproj swiper.backend.services/
 COPY swiper.backend.data/ch.cena.swiper.backend.data.csproj swiper.backend.data/
 RUN dotnet restore
