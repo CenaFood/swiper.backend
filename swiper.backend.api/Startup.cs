@@ -74,7 +74,7 @@ namespace ch.cena.swiper.backend.api
             context.Database.Migrate();
             migrator.Migrate();
 
-
+ 
         }
     }
 }
