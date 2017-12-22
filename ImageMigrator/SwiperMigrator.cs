@@ -61,7 +61,9 @@ namespace ImageMigrator
 
             for (int i = 0; i <= (fileNames.Count / 1000); i++)
             {
+                Console.WriteLine($"{i}000 to {i + 1}000: Start");
                 _logger.LogInformation($"{i}000 to {i + 1}000: Start");
+
                 var files = fileNames.Skip(i * 1000).Take(1000).ToList();
                 var successfullFiles = migrateService.MigrateChalleges(project.ID, challengeType.ID, files);
 
@@ -69,6 +71,7 @@ namespace ImageMigrator
                     File.Move(Path.Combine(migrationConfig.PickupDirectory, successfullFile), Path.Combine(storageConfig.ImageFolder, successfullFile));
 
                 _logger.LogInformation($"{i}000 to {i + 1}000: Migrated");
+                Console.WriteLine($"{i}000 to {i + 1}000: Migrated");
             }
         }
     }
