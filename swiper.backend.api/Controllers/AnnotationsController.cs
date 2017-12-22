@@ -20,7 +20,7 @@ namespace ch.cena.swiper.backend.api.Controllers
         public IActionResult CreateAnnotation([FromBody] AnnotationDTO annotation)
         {
             if (!ModelState.IsValid) {
-                BadRequest(ModelState);
+                return BadRequest(ModelState);
             }
 
             _service.InsertAnnotation(annotation);

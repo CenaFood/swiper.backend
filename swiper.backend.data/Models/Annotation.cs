@@ -6,7 +6,8 @@ using System.Text;
 namespace ch.cena.swiper.backend.data.Models
 {
     public class Annotation: BaseEntity
-    {   [Required]
+    {
+        [Required]
         public Guid ChallengeID { get; set; }
 
         [Required]
