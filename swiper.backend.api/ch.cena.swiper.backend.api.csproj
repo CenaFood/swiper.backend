@@ -5,6 +5,7 @@
     <AssemblyName>ch.cena.swiper.backend.api</AssemblyName>
     <RootNamespace>ch.cena.swiper.backend.api</RootNamespace>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <Configurations>Debug;Release;Docker-Release</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

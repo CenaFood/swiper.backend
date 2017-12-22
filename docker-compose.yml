@@ -7,21 +7,23 @@ services:
             context: .
             dockerfile: swiper.backend.api/Dockerfile
         # added port, in Dockerfile 80 is exposed which is mapped to 5000
-        ports:
-            - "80:80"
+        #orts:
+        #   - "80:80"
         # Mount your local path to /images
         volumes:
             - /Users/phili/Desktop/images:/images
             - /Users/phili/Desktop/Pickup:/pickup
         # make the backend dependent on the sql server
         environment:
-          "Hosting:HostingUri": "http://localhost"
-          "Migration:Migrate": "true"
-          "Migration:CreateProject": "true"
-          "Migration:ProjectName": "cena"
-          "Migration:ChallengeTypeName": "cenaSwiper"
-          "Migration:ChallengeQuestion": "Would you like to eat this here and now?"
-          "Migration:ChallengeAnswers": ("Yes", "No")
+        # - ConnectionStrings:SqlConnection=
+          - ASPNETCORE_ENVIRONMENT=Release
+          - HostingUri=http://localhostxyz
+        # "Migration:Migrate": "true"
+        # "Migration:CreateProject": "true"
+        # "Migration:ProjectName": "cena"
+        # "Migration:ChallengeTypeName": "cenaSwiper"
+        # "Migration:ChallengeQuestion": "Would you like to eat this here and now?"
+        # "Migration:ChallengeAnswers": ("Yes", "No")
         depends_on:
             - db
     # include the sql server into the container
