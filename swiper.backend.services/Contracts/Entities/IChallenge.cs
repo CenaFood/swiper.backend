@@ -4,14 +4,14 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.service.Contracts.Entities
 {
-    interface IChallenge
+    public interface IChallenge
     {
-        Guid ID { get; set; }
-        string Type { get; set; }
-        string Description { get; set; }
-        IProject Project { get; set; }
-        IImage Image { get; set; }
-        IEnumerable<string> Answers { get; set; }
+        Guid ID { get; }
+        Guid ProjectID { get; }
+        string ChallengeType { get; }
+        string Description { get; }
+        IImage Image { get; }
+        IEnumerable<string> Answers { get; }
 
     }
 }

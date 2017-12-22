@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using ch.cena.swiper.backend.data.Models;
+using ch.cena.swiper.backend.service.Contracts.Entities;
 
 namespace ch.cena.swiper.backend.services.Contracts
 {
     public interface IAnnotationService
     {
-        IEnumerable<Annotation> GetAnnotations(Project project);
-        Annotation GetAnnotation(Guid id);
-        void InsertAnnotation(Annotation annotation);
+        void InsertAnnotation(IAnnotation annotation);
     }
 }

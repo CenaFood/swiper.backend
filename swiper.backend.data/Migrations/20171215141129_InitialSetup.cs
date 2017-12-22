@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ch.cena.swiper.backend.data.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialSetup : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,8 +13,8 @@ namespace ch.cena.swiper.backend.data.Migrations
                 columns: table => new
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,9 +26,9 @@ namespace ch.cena.swiper.backend.data.Migrations
                 columns: table => new
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IssueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ProjectDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ExpiryDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    IssueDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -42,7 +42,7 @@ namespace ch.cena.swiper.backend.data.Migrations
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MailAddress = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    MailAddress = table.Column<string>(type: "nvarchar(62)", maxLength: 62, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -54,8 +54,8 @@ namespace ch.cena.swiper.backend.data.Migrations
                 columns: table => new
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ChallengeTypeID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    Descripton = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ChallengeTypeID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -65,7 +65,7 @@ namespace ch.cena.swiper.backend.data.Migrations
                         column: x => x.ChallengeTypeID,
                         principalTable: "ChallengeTypes",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -74,7 +74,7 @@ namespace ch.cena.swiper.backend.data.Migrations
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ChallengeTypeID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Payload = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileName = table.Column<string>(type: "nvarchar(124)", maxLength: 124, nullable: true),
                     ProjectID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -99,20 +99,16 @@ namespace ch.cena.swiper.backend.data.Migrations
                 columns: table => new
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AnswerID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AnswerText = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     ChallengeID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Payload = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Latitude = table.Column<float>(type: "real", nullable: false),
+                    LocalTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Longitude = table.Column<float>(type: "real", nullable: false),
                     UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Annotations", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Annotations_Answers_AnswerID",
-                        column: x => x.AnswerID,
-                        principalTable: "Answers",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Annotations_Challenges_ChallengeID",
                         column: x => x.ChallengeID,
@@ -126,11 +122,6 @@ namespace ch.cena.swiper.backend.data.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Annotations_AnswerID",
-                table: "Annotations",
-                column: "AnswerID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Annotations_ChallengeID",

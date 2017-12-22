@@ -4,9 +4,11 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.service.Contracts.Entities
 {
-    interface IProject
+    public interface IProject
     {
-        Guid ID { get; set; }
-        string Description {get;set;}
+        Guid ID { get;  }
+        string Name { get; }
+        DateTimeOffset IssueDate { get; }
+        DateTimeOffset? ExpiryDate { get; }
     }
 }

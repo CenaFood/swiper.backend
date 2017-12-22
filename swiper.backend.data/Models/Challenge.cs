@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace ch.cena.swiper.backend.data.Models
@@ -8,7 +9,9 @@ namespace ch.cena.swiper.backend.data.Models
     {
         public Guid ChallengeTypeID { get; set; }
         public Guid ProjectID { get; set; }
-        public string Payload { get; set; }
+
+        [MaxLength(124)]
+        public string FileName{ get; set; }
 
         public ChallengeType ChallengeType { get; set; }
         public Project Project { get; set; }

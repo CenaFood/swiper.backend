@@ -4,10 +4,12 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>ch.cena.swiper.backend.api</AssemblyName>
     <RootNamespace>ch.cena.swiper.backend.api</RootNamespace>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <Configurations>Debug;Release;Docker-Release</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <Content Include="Controllers\ValuesController.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,7 +26,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ImageMigrator\ImageMigrator.csproj" />
     <ProjectReference Include="..\swiper.backend.services\ch.cena.swiper.backend.service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>

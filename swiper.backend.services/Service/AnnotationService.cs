@@ -5,6 +5,7 @@ using System.Text;
 using ch.cena.swiper.backend.data.Models;
 using System.Linq;
 using ch.cena.swiper.backend.data;
+using ch.cena.swiper.backend.service.Contracts.Entities;
 
 namespace ch.cena.swiper.backend.service.Service
 {
@@ -17,22 +18,23 @@ namespace ch.cena.swiper.backend.service.Service
             context = swiperContext;
         }
 
-
-        public Annotation GetAnnotation(Guid id)
+        /// <summary>
+        /// Inserts an IAnnotation into the Database.
+        /// </summary>
+        /// <param name="annotation"></param>
+        public void InsertAnnotation(IAnnotation annotation)
         {
-            return context.Annotations.Find(id);
-        }
-
-        public IEnumerable<Annotation> GetAnnotations(Project project)
-        {
-            return context.Annotations
-                .Where(a => a.Challenge.ProjectID.Equals(project.ID));
-        }
-
-        public void InsertAnnotation(Annotation annotation)
-        {
-            context.Annotations.Add(annotation);
-            context.SaveChangesAsync();
+            Annotation newItem = new Annotation()
+            {
+                ChallengeID = annotation.ChallengeID,
+                AnswerText = annotation.Answer,
+                UserID = annotation.UserID,
+                Latitude = annotation.Latitude,
+                Longitude = annotation.Longitude,
+                LocalTime = annotation.LocalTime
+            };
+            context.Annotations.Add(newItem);
+            context.SaveChanges();
         }
     }
 }

@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace ch.cena.swiper.backend.data.Models
 {
     public class Answer : BaseEntity
     {
-        public string Descripton { get; set; }
+        [Required]
+        [MaxLength(255)]
+        public string Text { get; set; }
 
-        public ICollection<Annotation> Annotations { get; set; }
-        public ICollection<ChallengeType> ChallengeTypes;
+        [Required]
+        public Guid ChallengeTypeID { get; set; }
+
+        public ChallengeType ChallengeTypes;
     }
 }
