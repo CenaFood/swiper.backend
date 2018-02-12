@@ -28,5 +28,10 @@ Run **Docker MSSQL** instance on Linux basis to be used in DevEnv
 docker run --name cenaDevSQL -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=yourStrong(!)Password' -p 1433:1433 -d microsoft/mssql-server-linux
 ```
 
+Run **Docker Postgres** instance. for DevEnv
+````
+docker run --name cenaPostgres -e 'POSTGRES_USER=cena' -e 'POSTGRES_PASSWORD=yourStrong(!)Password' -p 5432:5432  -d postgres
+```
+
 ## ch.cena.swiper.backend.service
 This project holds services to handle API reqests in a seperate Layer. Validation sould be done here.

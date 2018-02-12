@@ -12,9 +12,9 @@ namespace ch.cena.swiper.backend.data.Migrations
                 name: "ChallengeTypes",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false)
+                    ID = table.Column<Guid>(nullable: false),
+                    Description = table.Column<string>(maxLength: 255, nullable: false),
+                    Name = table.Column<string>(maxLength: 32, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -25,10 +25,10 @@ namespace ch.cena.swiper.backend.data.Migrations
                 name: "Projects",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ExpiryDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    IssueDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false)
+                    ID = table.Column<Guid>(nullable: false),
+                    ExpiryDate = table.Column<DateTimeOffset>(nullable: true),
+                    IssueDate = table.Column<DateTimeOffset>(nullable: false),
+                    Name = table.Column<string>(maxLength: 64, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -39,10 +39,10 @@ namespace ch.cena.swiper.backend.data.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MailAddress = table.Column<string>(type: "nvarchar(62)", maxLength: 62, nullable: false)
+                    ID = table.Column<Guid>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    MailAddress = table.Column<string>(maxLength: 62, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -53,9 +53,9 @@ namespace ch.cena.swiper.backend.data.Migrations
                 name: "Answers",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ChallengeTypeID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Text = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
+                    ID = table.Column<Guid>(nullable: false),
+                    ChallengeTypeID = table.Column<Guid>(nullable: false),
+                    Text = table.Column<string>(maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -72,10 +72,10 @@ namespace ch.cena.swiper.backend.data.Migrations
                 name: "Challenges",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ChallengeTypeID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FileName = table.Column<string>(type: "nvarchar(124)", maxLength: 124, nullable: true),
-                    ProjectID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ID = table.Column<Guid>(nullable: false),
+                    ChallengeTypeID = table.Column<Guid>(nullable: false),
+                    FileName = table.Column<string>(maxLength: 124, nullable: true),
+                    ProjectID = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -98,13 +98,13 @@ namespace ch.cena.swiper.backend.data.Migrations
                 name: "Annotations",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AnswerText = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    ChallengeID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Latitude = table.Column<float>(type: "real", nullable: false),
-                    LocalTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    Longitude = table.Column<float>(type: "real", nullable: false),
-                    UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ID = table.Column<Guid>(nullable: false),
+                    AnswerText = table.Column<string>(maxLength: 255, nullable: false),
+                    ChallengeID = table.Column<Guid>(nullable: false),
+                    Latitude = table.Column<float>(nullable: false),
+                    LocalTime = table.Column<DateTimeOffset>(nullable: false),
+                    Longitude = table.Column<float>(nullable: false),
+                    UserID = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {

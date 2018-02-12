@@ -12,7 +12,7 @@ using Microsoft.Extensions.FileProviders;
 using ch.cena.swiper.backend.service.Contracts.Configuration;
 using ch.cena.swiper.backend.service.Contracts;
 using ImageMigrator;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Options; 
 
 namespace ch.cena.swiper.backend.api
 {
@@ -28,8 +28,8 @@ namespace ch.cena.swiper.backend.api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<SwiperContext>(
-                options => options.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
+            services.AddEntityFrameworkNpgsql().AddDbContext<SwiperContext>(
+                options => options.UseNpgsql(Configuration.GetConnectionString("PostgresConnection")));
 
             services.AddMvc();
 

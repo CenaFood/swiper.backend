@@ -12,11 +12,11 @@ services:
         # Mount your local path to /images
         volumes:
             - /c/Users/phili/Desktop/images:/images
-            - /c/Users/phili/Desktop/Pickup:/pickup
+            - /c/Users/phili/Desktop/pickup:/pickup
         # make the backend dependent on the sql server
         environment:
-        # - ConnectionStrings:SqlConnection=
-          - ConnectionStrings:SqlConnection=server=db;Initial Catalog=cena;Integrated Security=False;User ID=sa;Password=yourStrong(!)Password;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
+        # - ConnectionStrings:SqlConnection=server=db;Initial Catalog=cena;Integrated Security=False;User ID=sa;Password=yourStrong(!)Password;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
+          - ConnectionStrings:PostgresConnection=Host=db;Database=cena;Username=cena;Password=yourStrong(!)Password
           - Hosting:HostingUri=http://localhost
           - Migration:CreateProject=true
           - Migration:ProjectName=cena
@@ -28,7 +28,7 @@ services:
             - db
     # include the sql server into the container
     db:
-        image: "microsoft/mssql-server-linux"
+        image: "postgres"
         environment:
-            SA_PASSWORD: "yourStrong(!)Password"
-            ACCEPT_EULA: "Y"
+            POSTGRES_USER: "cena"
+            POSTGRES_PASSWORD: "yourStrong(!)Password"
