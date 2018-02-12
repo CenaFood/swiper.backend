@@ -35,7 +35,7 @@ namespace ch.cena.swiper.backend.api
                 options => options.UseNpgsql(Configuration.GetConnectionString("PostgresConnection")));
 
 
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<User, ApplicationRole>()
                 .AddEntityFrameworkStores<SwiperContext>()
                 .AddDefaultTokenProviders();
 
