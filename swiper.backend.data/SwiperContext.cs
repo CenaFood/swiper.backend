@@ -1,4 +1,5 @@
 ﻿using ch.cena.swiper.backend.data.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.data
 {
-    public class SwiperContext: DbContext
+    public class SwiperContext: IdentityDbContext<User, ApplicationRole, Guid>
     {
         public SwiperContext(DbContextOptions<SwiperContext> options) : base(options) { }
 
@@ -15,8 +16,6 @@ namespace ch.cena.swiper.backend.data
         public DbSet<Challenge> Challenges { get; set; }
         public DbSet<ChallengeType> ChallengeTypes { get; set; }
         public DbSet<Project> Projects { get; set; }
-        public DbSet<User> Users { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

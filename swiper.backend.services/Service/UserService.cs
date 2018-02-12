@@ -17,14 +17,14 @@ namespace ch.cena.swiper.backend.service.Service
 
         public void AddDummyUser()
         {
-            if (!context.Users.Any(u => u.ID.Equals(Guid.Parse("6A1BA20A-8D25-4E71-8BD8-E6872FD53ADA"))))
+            if (!context.Users.Any(u => u.Id.Equals(Guid.Parse("6A1BA20A-8D25-4E71-8BD8-E6872FD53ADA"))))
             {
                 context.Users.Add(new User
                 {
                     FirstName = "John",
                     LastName = "Doe",
-                    MailAddress = "john.doe@dum.my",
-                    ID = Guid.Parse("6A1BA20A-8D25-4E71-8BD8-E6872FD53ADA")
+                    Email = "john.doe@dum.my",
+                    Id = Guid.Parse("6A1BA20A-8D25-4E71-8BD8-E6872FD53ADA")
                 });
                 context.SaveChanges();
             }

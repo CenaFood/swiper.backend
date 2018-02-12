@@ -12,7 +12,10 @@ using Microsoft.Extensions.FileProviders;
 using ch.cena.swiper.backend.service.Contracts.Configuration;
 using ch.cena.swiper.backend.service.Contracts;
 using ImageMigrator;
-using Microsoft.Extensions.Options; 
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Identity;
+using System;
+using ch.cena.swiper.backend.data.Models;
 
 namespace ch.cena.swiper.backend.api
 {
@@ -30,6 +33,30 @@ namespace ch.cena.swiper.backend.api
         {
             services.AddEntityFrameworkNpgsql().AddDbContext<SwiperContext>(
                 options => options.UseNpgsql(Configuration.GetConnectionString("PostgresConnection")));
+
+
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<SwiperContext>()
+                .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = false;
+                options.Password.RequiredUniqueChars = 6;
+
+                // Lockout settings
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.MaxFailedAccessAttempts = 10;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings
+                options.User.RequireUniqueEmail = true;
+            });
 
             services.AddMvc();
 
@@ -69,7 +96,7 @@ namespace ch.cena.swiper.backend.api
                 RequestPath = new PathString(hostConfig.Value.ImageHostFolder)
             });
 
-            
+            app.UseAuthentication();            
             if (migrationConfig.Value.Migrate)
             {
                 // Create DB on startup and do the migrations. Manual migrations are NOT needed anymore
