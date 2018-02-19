@@ -49,7 +49,7 @@ namespace ch.cena.swiper.backend.api
                 options.Password.RequireDigit = true;
                 options.Password.RequiredLength = 8;
                 options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = true;
+                options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequiredUniqueChars = 6;
 
@@ -59,7 +59,7 @@ namespace ch.cena.swiper.backend.api
                 options.Lockout.AllowedForNewUsers = true;
 
                 // User settings
-                options.User.RequireUniqueEmail = true;
+                options.User.RequireUniqueEmail = false;
             });
 
             // ===== Add Jwt Authentication ========

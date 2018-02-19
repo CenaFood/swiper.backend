@@ -38,6 +38,10 @@ namespace ch.cena.swiper.backend.api.Controllers
         [HttpPost]
         public async Task<object> Login([FromBody] LoginDto model)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
 
             if (result.Succeeded)
@@ -52,6 +56,10 @@ namespace ch.cena.swiper.backend.api.Controllers
         [HttpPost]
         public async Task<object> Register([FromBody] RegisterDto model)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var user = new User
             {
                 UserName = model.Email,
@@ -66,6 +74,29 @@ namespace ch.cena.swiper.backend.api.Controllers
             }
 
             throw new ApplicationException("UNKNOWN_ERROR");
+        }
+
+        [HttpPost]
+        public async Task<object> RegisterIos([FromBody] RegisterGuidDto model) {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = new User
+            {
+                UserName = model.iCloudKitId
+            };
+
+            var result = await _userManager.CreateAsync(user, model.iCloudKitId);
+
+            if (result.Succeeded)
+            {
+                await _signInManager.SignInAsync(user, false);
+                return GenerateJwtToken(model.iCloudKitId, user);
+            }
+            
+            throw new ApplicationException("REGISTRATION_ERROR");
         }
 
         private object GenerateJwtToken(string email, User user)
@@ -91,6 +122,10 @@ namespace ch.cena.swiper.backend.api.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+    public class RegisterGuidDto {
+            [RegularExpression(@"^_[0-9a-f]{32}$")]
+        public string iCloudKitId { get; set; }
+    }
         public class LoginDto
         {
             [Required]
