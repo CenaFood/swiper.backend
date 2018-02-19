@@ -5,9 +5,8 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.service.Contracts.Service
 {
-    public interface IImageService
+    public interface IUserService
     {
-        IImage GetImageByChallengeId(Guid challengeID);
-        IImage GetImageByFilename(string filename);
+        IUser GetUserFromEmail(string email);
     }
 }

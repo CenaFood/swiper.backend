@@ -1,11 +1,11 @@
-﻿using ch.cena.swiper.backend.services.Contracts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using ch.cena.swiper.backend.data.Models;
 using ch.cena.swiper.backend.service.Contracts.Entities;
 using ch.cena.swiper.backend.data;
 using System.Linq;
+using ch.cena.swiper.backend.service.Contracts.Service;
 
 namespace ch.cena.swiper.backend.service.Service
 {

@@ -12,7 +12,6 @@ namespace ch.cena.swiper.backend.service.DTOs
         [Required]
         public Guid ChallengeID { get; set; }
 
-        [Required]
         public Guid UserID { get; set; }
 
         [Required]

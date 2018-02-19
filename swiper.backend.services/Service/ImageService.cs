@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.IO;
-using ch.cena.swiper.backend.service.Contracts;
 using ch.cena.swiper.backend.service.Contracts.Entities;
 using Microsoft.Extensions.Options;
 using ch.cena.swiper.backend.service.Contracts.Configuration;
+using ch.cena.swiper.backend.service.Contracts.Service;
 
 namespace ch.cena.swiper.backend.service.Service
 {
@@ -34,8 +34,7 @@ namespace ch.cena.swiper.backend.service.Service
             if (String.IsNullOrEmpty(filename)) return null;
             // TODO Get actual dimetions.
 
-            Uri imageUrl;
-            if (Uri.TryCreate($"{hostConfig.Value.HostingUri}{hostConfig.Value.ImageHostFolder}/{filename}", UriKind.Absolute, out imageUrl))
+            if (Uri.TryCreate($"{hostConfig.Value.HostingUri}{hostConfig.Value.ImageHostFolder}/{filename}", UriKind.Absolute, out Uri imageUrl))
             {
                 return new ImageDTO()
                 {

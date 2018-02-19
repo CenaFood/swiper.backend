@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ch.cena.swiper.backend.service.DTOs;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace ch.cena.swiper.backend.api.Controllers
 {
@@ -16,7 +18,8 @@ namespace ch.cena.swiper.backend.api.Controllers
         [Authorize]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2", HttpContext.User.Identity.Name };
+            var email = User.FindFirstValue(JwtRegisteredClaimNames.Sub);
+            return new string[] { "value1", "value2", email };
         }
 
         // GET api/values/5

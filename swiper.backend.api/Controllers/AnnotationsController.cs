@@ -1,19 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ch.cena.swiper.backend.service.DTOs;
-using ch.cena.swiper.backend.services.Contracts;
+using ch.cena.swiper.backend.service.Contracts.Service;
 using ch.cena.swiper.backend.service.Contracts.Entities;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace ch.cena.swiper.backend.api.Controllers
 {
     [Route("[controller]")]
+    [Authorize]
     public class AnnotationsController : Controller
     {
-        IAnnotationService _service;
+        IAnnotationService _annotationService;
+        IUserService _userService;
         
-        public AnnotationsController(IAnnotationService annotationService)
+
+        public AnnotationsController(IAnnotationService annotationService, IUserService userService)
         {
-            _service = annotationService;
+            _annotationService = annotationService;
+            _userService = userService;
         }
 
         [HttpPost]
@@ -22,8 +29,10 @@ namespace ch.cena.swiper.backend.api.Controllers
             if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
+            var userId = _userService.GetUserFromEmail(User.FindFirstValue(JwtRegisteredClaimNames.Sub)).ID;
 
-            _service.InsertAnnotation(annotation);
+            annotation.UserID = userId;
+            _annotationService.InsertAnnotation(annotation);
 
             return Created("controller", annotation);
         }
@@ -37,7 +46,7 @@ namespace ch.cena.swiper.backend.api.Controllers
         //    }
 
         //    foreach(var annotation in annotations)
-        //        _service.InsertAnnotation(annotation);
+        //        _annotationervice.InsertAnnotation(annotation);
 
         //    return Ok();
         //}

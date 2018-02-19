@@ -5,8 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using ch.cena.swiper.backend.service.Service;
 using Microsoft.EntityFrameworkCore;
 using ch.cena.swiper.backend.data;
-using ch.cena.swiper.backend.services.Contracts;
-using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
 using ch.cena.swiper.backend.service.Contracts.Configuration;
@@ -20,6 +18,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using ch.cena.swiper.backend.service.Contracts.Service;
 
 namespace ch.cena.swiper.backend.api
 {
@@ -97,6 +96,7 @@ namespace ch.cena.swiper.backend.api
             services.AddTransient<IChallengeService, ChallengeService>();
             services.AddTransient<IProjectService, ProjectService>();
             services.AddTransient<IImageService, ImageService>();
+            services.AddTransient<IUserService, UserService>();
 
             services.AddTransient<UserService, UserService>();
             services.AddTransient<MigrateService, MigrateService>();

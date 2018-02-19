@@ -1,5 +1,4 @@
-﻿using ch.cena.swiper.backend.services.Contracts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using ch.cena.swiper.backend.data.Models;
@@ -9,6 +8,7 @@ using System.Linq;
 using ch.cena.swiper.backend.service.DTOs;
 using AutoMapper.QueryableExtensions;
 using ch.cena.swiper.backend.service.Contracts;
+using ch.cena.swiper.backend.service.Contracts.Service;
 
 namespace ch.cena.swiper.backend.service.Service
 {

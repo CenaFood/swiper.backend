@@ -1,5 +1,8 @@
 ﻿using ch.cena.swiper.backend.data;
 using ch.cena.swiper.backend.data.Models;
+using ch.cena.swiper.backend.service.Contracts.Service;
+using ch.cena.swiper.backend.service.Contracts.Entities;
+using ch.cena.swiper.backend.service.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +10,23 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.service.Service
 {
-    public class UserService
+    public class UserService: IUserService
     {
         private readonly SwiperContext context;
         public UserService(SwiperContext swiperContext)
         {
             context = swiperContext;
+        }
+
+        public IUser GetUserFromEmail(string email) {
+            var user = context.Users.Single(u => u.Email == email);
+
+            return new UserDTO {
+                ID = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                MailAddress = user.Email
+            };
         }
 
         public void AddDummyUser()
