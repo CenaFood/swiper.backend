@@ -6,3 +6,15 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "80"
+    volumes:
+            - /c/Users/phili/Desktop/images:/images
+            - /c/Users/phili/Desktop/pickup:/pickup
+    environment:
+      # - ConnectionStrings:SqlConnection=server=db;Initial Catalog=cena;Integrated Security=False;User ID=sa;Password=yourStrong(!)Password;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
+        - ConnectionStrings:PostgresConnection=Host=db;Database=cena;Username=cena;Password=yourStrong(!)Password
+        - Hosting:HostingUri=http://localhost
+        - Hosting:JwtIssuer=http://localhost
+        - Hosting:JwtKey=Absolu3_Uns3cu53_K3y!
+        - Hosting:JwtExpireDays=120
+        - Migration:CreateProject=true
+        - Migration:Migrate=true

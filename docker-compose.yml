@@ -11,16 +11,19 @@ services:
          - "80:80"
         # Mount your local path to /images
         volumes:
-            - /c/Users/phili/Desktop/images:/images
-            - /c/Users/phili/Desktop/pickup:/pickup
+            - /images:/images
+            - /pickup:/pickup
         # make the backend dependent on the sql server
         environment:
         # - ConnectionStrings:SqlConnection=server=db;Initial Catalog=cena;Integrated Security=False;User ID=sa;Password=yourStrong(!)Password;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
           - ConnectionStrings:PostgresConnection=Host=db;Database=cena;Username=cena;Password=yourStrong(!)Password
-          - Hosting:HostingUri=http://localhost
-          - Migration:CreateProject=true
+          - Hosting:HostingUri=https://cenaswiper.luethi.rocks
+          - Hosting:JwtKey=secret #Exchange with actual JwtKey
+          - Hosting:JwtIssuer=https://cenaswiper.luethi.rocks
+          - Hosting:JwtExpireDays=5
+          - Migration:CreateProject=false
+          - Migration:Migrate=false
           - Migration:ProjectName=cena
-          - Migration:Migrate=true
           - Migration:ChallengeTypeName=cenaSwiper
           - Migration:ChallengeQuestion=Would you like to eat this here and now?
           - Migration:ChallengeAnswers=["Yes", "No", "No Food"]
