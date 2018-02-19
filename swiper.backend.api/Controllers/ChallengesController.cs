@@ -23,7 +23,7 @@ namespace ch.cena.swiper.backend.api.Controllers
         [HttpGet("challenges")]
         public IActionResult GetChallenges()
         {
-            var user = _userService.GetUserFromEmail(User.FindFirstValue(JwtRegisteredClaimNames.Sub));
+            var user = _userService.GetUserFromUsername(User.FindFirstValue(JwtRegisteredClaimNames.Sub));
             var result = _service.GetChallenges(user);
 
             if (result == null || result.Count() < 1) return NotFound("No more challanges for you");
@@ -33,7 +33,7 @@ namespace ch.cena.swiper.backend.api.Controllers
         [HttpGet("projects/{projectID:Guid}/[controller]")]
         public IActionResult GetChallengesByProject(Guid projectID)
         {
-            var user = _userService.GetUserFromEmail(User.FindFirstValue(JwtRegisteredClaimNames.Sub));
+            var user = _userService.GetUserFromUsername(User.FindFirstValue(JwtRegisteredClaimNames.Sub));
             var result = _service.GetChallengesFor(user, projectID);
 
             if (result == null || result.Count() < 1) return NotFound("No more challenges for specified project");

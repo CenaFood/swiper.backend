@@ -7,6 +7,6 @@ namespace ch.cena.swiper.backend.service.Contracts.Service
 {
     public interface IUserService
     {
-        IUser GetUserFromEmail(string email);
+        IUser GetUserFromUsername(string email);
     }
 }

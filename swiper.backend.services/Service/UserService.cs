@@ -18,8 +18,8 @@ namespace ch.cena.swiper.backend.service.Service
             context = swiperContext;
         }
 
-        public IUser GetUserFromEmail(string email) {
-            var user = context.Users.Single(u => u.Email == email);
+        public IUser GetUserFromUsername(string username) {
+            var user = context.Users.Single(u => u.UserName == username);
 
             return new UserDTO {
                 ID = user.Id,

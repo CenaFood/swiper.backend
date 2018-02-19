@@ -29,7 +29,7 @@ namespace ch.cena.swiper.backend.api.Controllers
             if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
-            var userId = _userService.GetUserFromEmail(User.FindFirstValue(JwtRegisteredClaimNames.Sub)).ID;
+            var userId = _userService.GetUserFromUsername(User.FindFirstValue(JwtRegisteredClaimNames.Sub)).ID;
 
             annotation.UserID = userId;
             _annotationService.InsertAnnotation(annotation);
