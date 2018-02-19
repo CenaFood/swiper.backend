@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ch.cena.swiper.backend.service.DTOs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ch.cena.swiper.backend.api.Controllers
 {
@@ -12,12 +13,14 @@ namespace ch.cena.swiper.backend.api.Controllers
     {
         // GET api/values
         [HttpGet]
+        [Authorize]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "value1", "value2", HttpContext.User.Identity.Name };
         }
 
         // GET api/values/5
+        [Authorize]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -30,6 +33,7 @@ namespace ch.cena.swiper.backend.api.Controllers
         }
 
         // POST api/values
+        [Authorize]
         [HttpPost]
         public void Post([FromBody]string value)
         {

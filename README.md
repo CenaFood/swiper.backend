@@ -29,7 +29,7 @@ docker run --name cenaDevSQL -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=yourStrong(!)Pas
 ```
 
 Run **Docker Postgres** instance. for DevEnv
-````
+```
 docker run --name cenaPostgres -e 'POSTGRES_USER=cena' -e 'POSTGRES_PASSWORD=yourStrong(!)Password' -p 5432:5432  -d postgres
 ```
 

@@ -1,11 +1,13 @@
 ﻿using ch.cena.swiper.backend.service.DTOs;
 using ch.cena.swiper.backend.services.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 
 namespace ch.cena.swiper.backend.api.Controllers
 {
+    [Authorize]
     public  class ChallengesController : Controller
     {
         private readonly IChallengeService _service;
