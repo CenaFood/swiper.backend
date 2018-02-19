@@ -23,7 +23,7 @@ services:
           - Migration:Migrate=true
           - Migration:ChallengeTypeName=cenaSwiper
           - Migration:ChallengeQuestion=Would you like to eat this here and now?
-          - Migration:ChallengeAnswers=["Yes", "No"]
+          - Migration:ChallengeAnswers=["Yes", "No", "No Food"]
         depends_on:
             - db
     # include the sql server into the container

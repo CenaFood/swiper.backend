@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using ch.cena.swiper.backend.data;
 using ch.cena.swiper.backend.service.Service;
-using ch.cena.swiper.backend.services.Contracts;
 using System.IO;
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ch.cena.swiper.backend.service.Contracts.Configuration;
+using ch.cena.swiper.backend.service.Contracts.Service;
 
 namespace ImageMigrator
 {

@@ -4,7 +4,7 @@ using System.Text;
 using ch.cena.swiper.backend.data.Models;
 using ch.cena.swiper.backend.service.Contracts.Entities;
 
-namespace ch.cena.swiper.backend.services.Contracts
+namespace ch.cena.swiper.backend.service.Contracts.Service
 {
     public interface IAnnotationService
     {
