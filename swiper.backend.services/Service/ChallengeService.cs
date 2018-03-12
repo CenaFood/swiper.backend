@@ -26,7 +26,7 @@ namespace ch.cena.swiper.backend.service.Service
         public IEnumerable<IChallenge> GetChallenges(IUser user)
         {
             // TODO: Check performance
-            var challenges = context.Challenges.Where(c => !c.Annotations.Any(a => a.UserID == user.ID))
+            var challenges = context.Challenges
                               .OrderByRandom()
                               .Take(20)
                               .Select(c =>
