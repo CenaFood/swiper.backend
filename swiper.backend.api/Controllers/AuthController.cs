@@ -49,8 +49,8 @@ namespace ch.cena.swiper.backend.api.Controllers
                 var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
                 return GenerateJwtToken(model.Email, appUser);
             }
-
-            throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
+            
+            return new UnauthorizedResult();
         }
 
         [HttpPost]
@@ -73,7 +73,7 @@ namespace ch.cena.swiper.backend.api.Controllers
                 return GenerateJwtToken(model.Email, user);
             }
 
-            throw new ApplicationException("UNKNOWN_ERROR");
+            return new UnauthorizedResult();
         }
 
         [HttpPost]
@@ -95,8 +95,8 @@ namespace ch.cena.swiper.backend.api.Controllers
                 await _signInManager.SignInAsync(user, false);
                 return GenerateJwtToken(model.iCloudKitId, user);
             }
-            
-            throw new ApplicationException("REGISTRATION_ERROR");
+
+            return new UnauthorizedResult();
         }
 
         private object GenerateJwtToken(string email, User user)
