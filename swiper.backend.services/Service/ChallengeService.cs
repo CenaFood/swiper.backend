@@ -46,7 +46,7 @@ namespace ch.cena.swiper.backend.service.Service
 
         public IEnumerable<IChallenge> GetChallengesFor(IUser user, Guid projectID)
         {
-            return context.Challenges.Where(c => !c.Annotations.Any(a => a.UserID == user.ID))
+            return context.Challenges
                             .Where(c => c.ProjectID == projectID)
                             .OrderByRandom()
                             .Take(20)
@@ -56,7 +56,7 @@ namespace ch.cena.swiper.backend.service.Service
 
         public IEnumerable<IChallenge> GetChallengesOf(IUser user, string type)
         {
-            return context.Challenges.Where(c => !c.Annotations.Any(a => a.UserID == user.ID))
+            return context.Challenges
                               .Where(c => c.ChallengeType.Description == type)
                               .OrderByRandom()
                               .Take(20)
