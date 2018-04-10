@@ -52,7 +52,7 @@ namespace ch.cena.swiper.backend.service.Service
 
                 return true;
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return false;
             }

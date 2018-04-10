@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ch.cena.swiper.backend.api", "swiper.backend.api\ch.cena.swiper.backend.api.csproj", "{FF1D59DA-11E2-4850-800D-78C8C6F12A87}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ch.cena.swiper.backend.api", "swiper.backend.api\ch.cena.swiper.backend.api.csproj", "{FF1D59DA-11E2-4850-800D-78C8C6F12A87}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ch.cena.swiper.backend.service", "swiper.backend.services\ch.cena.swiper.backend.service.csproj", "{7AADE6A9-6F7B-48D1-924D-A4F443C95F2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ch.cena.swiper.backend.service", "swiper.backend.services\ch.cena.swiper.backend.service.csproj", "{7AADE6A9-6F7B-48D1-924D-A4F443C95F2C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ch.cena.swiper.backend.data", "swiper.backend.data\ch.cena.swiper.backend.data.csproj", "{7AFC27B6-D3D2-4240-A303-F25767AA2645}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ch.cena.swiper.backend.data", "swiper.backend.data\ch.cena.swiper.backend.data.csproj", "{7AFC27B6-D3D2-4240-A303-F25767AA2645}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageMigrator", "ImageMigrator\ImageMigrator.csproj", "{C4935829-9A8A-4FF5-BB8C-AE0A059C1425}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageMigrator", "ImageMigrator\ImageMigrator.csproj", "{C4935829-9A8A-4FF5-BB8C-AE0A059C1425}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{8249BD0F-9B66-41C2-A10A-0E810528C62E}"
 EndProject
