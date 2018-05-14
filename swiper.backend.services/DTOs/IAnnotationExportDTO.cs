@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.service.DTOs
 {
-    public interface IAnnotationExportDTO
+    public class AnnotationExportDTO
     {
     }
 }

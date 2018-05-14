@@ -15,7 +15,7 @@ namespace ch.cena.swiper.backend.service.Service
         }
 
         
-        public ICollection<IAnnotationExportDTO> ExportForProject(String project)
+        public ICollection<AnnotationExportDTO> ExportForProject(String project)
         {
             throw new NotImplementedException();
         }
