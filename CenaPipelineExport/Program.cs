@@ -1,42 +1,67 @@
 ﻿using ch.cena.swiper.backend.data;
-using ch.cena.swiper.backend.data.Models;
-using McMaster.Extensions.CommandLineUtils;
+using ch.cena.swiper.backend.service.Service;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
 using System;
+using System.IO;
+
 using System.Linq;
 
 namespace CenaPipelineExport
 {
-    class Program
-    {
-        static int Main(string[] args)
+    class Program { 
+    
+        public static void Main(string[] args)
         {
-            var app = new CommandLineApplication();
+            var servicesProvider = BuildDi();
+            var runner = servicesProvider.GetRequiredService<Runner>();
 
-            app.HelpOption();
-            var trainRatioOption = app.Option("-t|--trainRatio <ratio>", "The ratio for train data", CommandOptionType.SingleValue);
-            var overrideOption = app.Option("-o", "If set all outputs will be overwritten.", CommandOptionType.NoValue);
+            runner.Export();
 
-            app.OnExecute(() =>
-            {
-                var trainRatio = trainRatioOption.HasValue()
-                    ? float.Parse(trainRatioOption.Value())
-                    : 0.8;
+            Console.WriteLine("Press ANY key to exit");
+            Console.ReadLine();
 
-
-                //TODO: Overrideoption
-                Console.WriteLine($"Train ratio {trainRatio}!");
+            // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
+            NLog.LogManager.Shutdown();
+        }
 
 
+        private static IServiceProvider BuildDi()
+        {
+            var configBuilder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
 
-                var testRatio = 1 - trainRatio;
+            var config = configBuilder.Build();
 
+            var services = new ServiceCollection();
 
+            services.AddEntityFrameworkNpgsql().AddDbContext<SwiperContext>(
+                options => options.UseNpgsql(config.GetConnectionString("PostgresConnection")));
 
+            //Runner is the custom class
+            services.AddTransient<Runner>();
 
-                return 0;
-            });
+            //Loggin service
+            services.AddSingleton<ILoggerFactory, LoggerFactory>();
+            services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
+            services.AddLogging((builder) => builder.SetMinimumLevel(LogLevel.Trace));
 
-            return app.Execute(args);
+            //Add Database Services
+            services.AddTransient<ExportService, ExportService>();
+
+            var serviceProvider = services.BuildServiceProvider();
+
+            var loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
+
+            //configure NLog
+            loggerFactory.AddNLog(new NLogProviderOptions { CaptureMessageTemplates = true, CaptureMessageProperties = true });
+            NLog.LogManager.LoadConfiguration("nlog.config");
+
+            return serviceProvider;
         }
     }
 }
