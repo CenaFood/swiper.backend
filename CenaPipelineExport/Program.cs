@@ -14,9 +14,9 @@ using System.Linq;
 
 namespace CenaPipelineExport
 {
-    class Program
+    class Program { 
     
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             var servicesProvider = BuildDi();
             var runner = servicesProvider.GetRequiredService<Runner>();
