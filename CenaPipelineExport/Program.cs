@@ -1,6 +1,4 @@
 ﻿using ch.cena.swiper.backend.data;
-using ch.cena.swiper.backend.data.Models;
-using ch.cena.swiper.backend.service.Contracts.Service;
 using ch.cena.swiper.backend.service.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -53,8 +51,7 @@ namespace CenaPipelineExport
             services.AddLogging((builder) => builder.SetMinimumLevel(LogLevel.Trace));
 
             //Add Database Services
-            services.AddTransient<IAnnotationService, AnnotationService>();
-
+            services.AddTransient<ExportService, ExportService>();
 
             var serviceProvider = services.BuildServiceProvider();
 
