@@ -15,7 +15,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectVersion>2.0</ProjectVersion>
+    <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>8249bd0f-9b66-41c2-a10a-0e810528c62e</ProjectGuid>
     <DockerLaunchBrowser>True</DockerLaunchBrowser>
