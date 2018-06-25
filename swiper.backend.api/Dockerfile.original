@@ -4,17 +4,18 @@ EXPOSE 80
 
 FROM microsoft/aspnetcore-build:2.0 AS build
 WORKDIR /src
+COPY *.sln ./
 COPY swiper.backend.api/ch.cena.swiper.backend.api.csproj swiper.backend.api/
 COPY ImageMigrator/ImageMigrator.csproj ImageMigrator/
 COPY swiper.backend.services/ch.cena.swiper.backend.service.csproj swiper.backend.services/
 COPY swiper.backend.data/ch.cena.swiper.backend.data.csproj swiper.backend.data/
-RUN dotnet restore swiper.backend.api/ch.cena.swiper.backend.api.csproj
+RUN dotnet restore
 COPY . .
 WORKDIR /src/swiper.backend.api
-RUN dotnet build ch.cena.swiper.backend.api.csproj -c Release -o /app
+RUN dotnet build -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish ch.cena.swiper.backend.api.csproj -c Release -o /app
+RUN dotnet publish -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
