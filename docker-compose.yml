@@ -16,10 +16,10 @@ services:
     # make the backend dependent on the sql server
     environment:
     # - ConnectionStrings__SqlConnection=server=db;Initial Catalog=cena;Integrated Security=False;User ID=sa;Password=yourStrong(!)Password;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
-      ConnectionStrings__PostgresConnection: "Host=db;Database=cena;Username=cena;Password=yourStrong(!)Password"
+      ConnectionStrings__PostgresConnection: 'Host=db;Database=cena;Username=cena;Password=yourStrong(!)Password'
       Hosting__HostingUri: 'https://cenaswiper.luethi.rocks'
       Hosting__JwtKey: 'secret' #Exchange with actual JwtKey
-      Hosting__JwtIssuer: https://cenaswiper.luethi.rocks
+      Hosting__JwtIssuer: 'https://cenaswiper.luethi.rocks'
       Hosting__JwtExpireDays: 5
       Migration__CreateProject: 'false'
       Migration__Migrate: 'false'

@@ -47,7 +47,7 @@ namespace ch.cena.swiper.backend.api.Controllers
             if (result.Succeeded)
             {
                 var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
-                return GenerateJwtToken(model.Email, appUser);
+                return GenerateJwtToken(appUser);
             }
             
             return new UnauthorizedResult();
@@ -70,40 +70,18 @@ namespace ch.cena.swiper.backend.api.Controllers
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
-                return GenerateJwtToken(model.Email, user);
+                return GenerateJwtToken(user);
             }
 
             return new UnauthorizedResult();
         }
 
-        [HttpPost]
-        public async Task<object> RegisterIos([FromBody] RegisterGuidDto model) {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
-            var user = new User
-            {
-                UserName = model.iCloudKitId
-            };
-
-            var result = await _userManager.CreateAsync(user, model.iCloudKitId);
-
-            if (result.Succeeded)
-            {
-                await _signInManager.SignInAsync(user, false);
-                return GenerateJwtToken(model.iCloudKitId, user);
-            }
-
-            return new UnauthorizedResult();
-        }
-
-        private object GenerateJwtToken(string email, User user)
+        private object GenerateJwtToken(User user)
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, email),
+                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };
 
@@ -122,14 +100,14 @@ namespace ch.cena.swiper.backend.api.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-    public class RegisterGuidDto {
-            [RegularExpression(@"^_[0-9a-f]{32}$")]
-        public string iCloudKitId { get; set; }
-    }
         public class LoginDto
         {
+            private string _Email;
             [Required]
-            public string Email { get; set; }
+            public string Email {
+                get { return _Email; }
+                set { _Email = value.ToLower(); }
+            }
 
             [Required]
             public string Password { get; set; }
@@ -138,8 +116,13 @@ namespace ch.cena.swiper.backend.api.Controllers
 
         public class RegisterDto
         {
+            private string _Email;
             [Required]
-            public string Email { get; set; }
+            public string Email
+            {
+                get { return _Email; }
+                set { _Email = value.ToLower(); }
+            }
 
             [Required]
             [StringLength(100, ErrorMessage = "PASSWORD_MIN_LENGTH", MinimumLength = 6)]
