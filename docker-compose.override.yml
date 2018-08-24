@@ -7,10 +7,10 @@ services:
     ports:
       - "80"
     volumes:
-          - C:\Users\phili\Desktop\images:/images
-          - C:\Users\phili\Desktop\pickup:/pickup
+          - D:\images:/images
+          - D:\pickup:/pickup
     environment:
-      ConnectionStrings__PostgresConnection: 'Host=db;Database=eena;Username=cena;Password=yourStrong(!)Password'
+      ConnectionStrings__PostgresConnection: 'Host=db;Database=cena;Username=cena;Password=yourStrong(!)Password'
       Hosting__HostingUri: 'http://localhost'
       Hosting__JwtIssuer: 'http://localhost'
       Hosting__JwtKey: 'Absolu3_Uns3cu53_K3y!'
