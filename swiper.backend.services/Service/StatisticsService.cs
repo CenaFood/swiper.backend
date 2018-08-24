@@ -9,7 +9,7 @@ using System.Text;
 
 namespace ch.cena.swiper.backend.service.Service
 {
-    class StatisticsService: IStatisticsService
+    public class StatisticsService: IStatisticsService
     {
         private readonly SwiperContext context;
         public StatisticsService(SwiperContext swiperContext)
@@ -19,12 +19,12 @@ namespace ch.cena.swiper.backend.service.Service
 
 
 
-        public IEnumerable<ProjectStatisticsDTO> GetProjectStatistics()
+        public IEnumerable<IProjectStatistics> GetProjectStatistics()
         {
             throw new NotImplementedException();
         }
 
-        public ProjectStatisticsDTO GetProjectStatisticsForProject(string ProjectName)
+        public IProjectStatistics GetProjectStatisticsForProject(string ProjectName)
         {
             throw new NotImplementedException();
         }

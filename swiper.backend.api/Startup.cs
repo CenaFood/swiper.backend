@@ -97,6 +97,7 @@ namespace ch.cena.swiper.backend.api
             services.AddTransient<IProjectService, ProjectService>();
             services.AddTransient<IImageService, ImageService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IStatisticsService, StatisticsService>();
 
             services.AddTransient<UserService, UserService>();
             services.AddTransient<MigrateService, MigrateService>();
